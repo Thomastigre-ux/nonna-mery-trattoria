@@ -21,21 +21,68 @@
 .locationBadge{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:#efe7db;color:#6d3138;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
 .imageCard .controls{display:flex;gap:6px;flex-wrap:wrap;padding:0 3px 5px}
 .miniBtn{border:1px solid var(--line);background:#f7f3eb;border-radius:999px;padding:7px 10px;font-size:.7rem}
-.menuTools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
-.menuTools select,.menuTools input{border:1px solid var(--line);background:#fff;padding:10px 12px;border-radius:12px}
-.menuSearch{min-width:240px;flex:1}
-.flagLine{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:10px}
-.badgeFeatured{display:inline-block;padding:4px 8px;border-radius:999px;background:#f4ead2;color:#725a2d;font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.badgeUnavailable{display:inline-block;padding:4px 8px;border-radius:999px;background:#f4dddd;color:#7b2d34;font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.menuEditorList{display:grid;gap:12px;margin-top:14px}
-.dishEdit{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px}
-.dishHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
-.dishHead strong{font-family:var(--serif);font-size:1.35rem;font-weight:600}
-.dishGrid{display:grid;grid-template-columns:1fr 1fr 160px;gap:10px}
+
+.menuTools{display:grid;grid-template-columns:minmax(240px,1fr) auto auto auto;gap:10px;align-items:center;margin:18px 0}
+.menuTools select,.menuTools input{border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:12px;min-height:44px}
+.menuSearch{min-width:0}
+.menuCategoryBlock{margin:22px 0 8px}
+.menuCategoryHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 10px}
+.menuCategoryHeader h3{font-family:var(--serif);font-size:1.8rem;margin:0}
+.menuCategoryHeader span{font-size:.72rem;color:var(--muted);background:#eee8dd;padding:6px 9px;border-radius:999px}
+.menuEditorList{display:grid;gap:14px;margin-top:10px}
+.dishEdit{border:1px solid var(--line);background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(20,28,22,.025)}
+.dishSummary{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:16px;align-items:center;padding:16px 18px}
+.dishSummaryMain{min-width:0}
+.dishSummaryTitle{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dishSummaryTitle strong{font-family:var(--serif);font-size:1.4rem;font-weight:600;line-height:1.05}
+.dishSummaryMeta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.dishSummaryMeta .cat{font-size:.72rem;color:var(--muted)}
+.dishSummaryMeta .descPreview{font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:650px}
+.dishPrice{font-family:var(--serif);font-size:1.3rem;white-space:nowrap}
+.editToggle{border:1px solid var(--line);background:#f7f3eb;padding:9px 13px;border-radius:999px;font-weight:600;color:var(--ink)}
+.editToggle:hover{background:#eee8dd}
+.dishEditor{display:none;border-top:1px solid var(--line);background:#fffdf9;padding:18px}
+.dishEdit.open .dishEditor{display:block}
+.dishEdit.open .editToggle{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.dishGrid{display:grid;grid-template-columns:minmax(220px,1.2fr) minmax(170px,.8fr) 150px;gap:12px}
 .dishGrid .desc{grid-column:1/-1}
-.dishActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.switchLine{display:flex;align-items:center;gap:8px;font-size:.78rem}
-@media(max-width:850px){.dishGrid{grid-template-columns:1fr}.dishGrid .desc{grid-column:auto}}
+.dishGrid textarea{min-height:105px}
+.statusPanel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.statusBox{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px}
+.statusBoxTop{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.statusBox strong{font-size:.78rem}
+.statusBox small{display:block;color:var(--muted);font-size:.68rem;line-height:1.4;margin-top:5px}
+.toggle{position:relative;display:inline-flex;align-items:center;flex:0 0 auto}
+.toggle input{position:absolute!important;opacity:0!important;width:1px!important;height:1px!important;pointer-events:none}
+.toggleTrack{width:42px;height:24px;border-radius:999px;background:#d7d4cc;position:relative;transition:.2s}
+.toggleTrack:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}
+.toggle input:checked + .toggleTrack{background:var(--emerald)}
+.toggle input:checked + .toggleTrack:after{transform:translateX(18px)}
+.availabilitySelect{width:100%;border:1px solid var(--line);background:#fff;padding:9px 10px;border-radius:10px;margin-top:8px}
+.badgeFeatured,.badgeUnavailable,.badgeHidden{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.badgeFeatured{background:#f4ead2;color:#725a2d}
+.badgeUnavailable{background:#f4dddd;color:#7b2d34}
+.badgeHidden{background:#e9e7e3;color:#6b6964}
+.dishActions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}
+.dishActions .spacer{flex:1}
+.miniBtn{border:1px solid var(--line);background:#f7f3eb;border-radius:999px;padding:9px 11px;font-size:.72rem}
+input[type="checkbox"]{width:auto}
+@media(max-width:1050px){
+ .menuTools{grid-template-columns:1fr 1fr}
+ .dishSummary{grid-template-columns:minmax(0,1fr) auto}
+ .dishPrice{grid-row:2;grid-column:1}
+ .editToggle{grid-row:1/3;grid-column:2}
+ .statusPanel{grid-template-columns:1fr}
+}
+@media(max-width:850px){
+ .menuTools{grid-template-columns:1fr}
+ .dishGrid{grid-template-columns:1fr}
+ .dishGrid .desc{grid-column:auto}
+ .dishSummary{grid-template-columns:1fr auto;padding:14px}
+ .dishSummaryMeta .descPreview{max-width:75vw}
+ .dishEditor{padding:14px}
+}
+
 @media(max-width:850px){.shell{display:block}.sidebar{position:fixed;inset:0 auto 0 0;width:260px;z-index:20;transform:translateX(-100%);transition:.25s}.sidebar.open{transform:none}.mobileTop{display:flex;justify-content:space-between;align-items:center;background:var(--emerald);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:10}.mobileTop button{background:none;border:0;color:#fff;font-size:1.2rem}.main{padding:24px 16px 60px}.cards,.imageGrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.top{align-items:flex-start}}
 </style></head>
 <body>
@@ -71,7 +118,7 @@
 </section>
 <section class="view" id="view-menu">
 <div class="panel">
- <div class="panelHead"><div><h2>Cardápio online</h2><div class="hint">Edite pratos, descrições, preços, categorias e o que fica visível no site.</div></div><button class="btn primary" onclick="addMenuItem()">+ Novo prato</button></div>
+ <div class="panelHead"><div><h2>Cardápio online</h2><div class="hint">Os pratos ficam compactos. Clique em <b>Editar</b> para abrir apenas o item que você quer alterar.</div></div><button class="btn primary" onclick="addMenuItem()">+ Novo prato</button></div>
  <div class="menuTools">
   <input id="menuSearch" class="menuSearch" type="search" placeholder="Buscar prato pelo nome…" oninput="renderMenuItems()">
   <label for="menuCategoryFilter">Categoria</label>
@@ -100,7 +147,7 @@
 <script>
 const SUPABASE_URL='https://ahglfciyzgmtfzicrzqa.supabase.co';
 const SUPABASE_KEY='sb_publishable_7ACGa6GvIcYEYiIuNV-OqQ_OZUWK6lJ';
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let content=null;let menuItems=[];const el=id=>document.getElementById(id);const contentFields=['hero_lead','hero_subtitle','story_title','story_text','experience_title','experience_text','address','hours','phone','whatsapp','instagram'];
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let content=null;let menuItems=[];let expandedDishId=null;const el=id=>document.getElementById(id);const contentFields=['hero_lead','hero_subtitle','story_title','story_text','experience_title','experience_text','address','hours','phone','whatsapp','instagram'];
 function setStatus(msg,type=''){el('status').textContent=msg;el('status').className='status '+type}function toggleSide(){el('sidebar').classList.toggle('open')}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));el('view-'+b.dataset.view).classList.add('active');el('pageTitle').textContent=b.textContent;el('sidebar').classList.remove('open')});
 async function login(){const email=el('loginEmail').value.trim(),password=el('loginPassword').value;el('loginMsg').textContent='Entrando…';const {error}=await sb.auth.signInWithPassword({email,password});if(error){el('loginMsg').textContent='Não foi possível entrar: '+error.message;return}await enterApp()}
@@ -145,36 +192,94 @@ function renderMenuItems(){
  });
  el('menuCount').textContent=`${rows.length} ${rows.length===1?'item':'itens'}`;
  list.innerHTML='';
- rows.forEach(item=>{
-   const card=document.createElement('div');card.className='dishEdit';
-   const badges=`${item.featured?'<span class="badgeFeatured">Destaque</span>':''}${item.available===false?'<span class="badgeUnavailable">Indisponível</span>':''}`;
-   card.innerHTML=`
-    <div class="dishHead"><div><strong>${escapeHtml(item.name||'Novo prato')}</strong><div class="hint">${escapeHtml(item.category||'Sem categoria')}</div><div style="margin-top:6px">${badges}</div></div>
-      <label class="switchLine"><input class="f-visible" type="checkbox" ${item.visible!==false?'checked':''}> Visível no site</label>
-    </div>
-    <div class="dishGrid">
-      <div class="field"><label>Nome do prato</label><input class="f-name" value="${escapeHtml(item.name||'')}"></div>
-      <div class="field"><label>Categoria</label><input class="f-category" value="${escapeHtml(item.category||'')}"></div>
-      <div class="field"><label>Preço</label><input class="f-price" value="${escapeHtml(item.price||'')}" placeholder="R$ 00"></div>
-      <div class="field desc"><label>Descrição</label><textarea class="f-description">${escapeHtml(item.description||'')}</textarea></div>
-    </div>
-    <div class="flagLine">
-      <label class="switchLine"><input class="f-featured" type="checkbox" ${item.featured?'checked':''}> Mostrar como destaque na seção “A Itália à mesa”</label>
-      <label class="switchLine"><input class="f-available" type="checkbox" ${item.available!==false?'checked':''}> Disponível hoje</label>
-    </div>
-    <div class="dishActions">
-      <button class="btn primary saveDish">Salvar prato</button>
-      <button class="btn soft duplicateDish">Duplicar</button>
-      <button class="miniBtn moveUp">↑ Subir</button>
-      <button class="miniBtn moveDown">↓ Descer</button>
-      <button class="btn danger deleteDish">Excluir</button>
-    </div>`;
-   card.querySelector('.saveDish').onclick=()=>saveMenuItem(item,card);
-   card.querySelector('.duplicateDish').onclick=()=>duplicateMenuItem(item);
-   card.querySelector('.deleteDish').onclick=()=>deleteMenuItem(item);
-   card.querySelector('.moveUp').onclick=()=>moveMenuItem(item,-1);
-   card.querySelector('.moveDown').onclick=()=>moveMenuItem(item,1);
-   list.appendChild(card);
+ if(!rows.length){
+   list.innerHTML='<div class="card" style="text-align:center;padding:30px"><h3 style="margin:0 0 6px">Nenhum prato encontrado</h3><div class="hint">Tente remover algum filtro ou criar um novo prato.</div></div>';
+   return;
+ }
+ const cats=[...new Set(rows.map(x=>x.category||'Sem categoria'))];
+ cats.forEach(cat=>{
+   const catRows=rows.filter(x=>(x.category||'Sem categoria')===cat);
+   const section=document.createElement('div');
+   section.className='menuCategoryBlock';
+   section.innerHTML=`<div class="menuCategoryHeader"><h3>${escapeHtml(cat)}</h3><span>${catRows.length} ${catRows.length===1?'item':'itens'}</span></div><div class="menuEditorList"></div>`;
+   const target=section.querySelector('.menuEditorList');
+
+   catRows.forEach(item=>{
+     const card=document.createElement('div');
+     card.className='dishEdit'+(expandedDishId===item.id?' open':'');
+     const badges=[
+       item.featured?'<span class="badgeFeatured">Destaque</span>':'',
+       item.available===false?'<span class="badgeUnavailable">Indisponível</span>':'',
+       item.visible===false?'<span class="badgeHidden">Oculto</span>':''
+     ].join('');
+     const preview=(item.description||'Sem descrição').replace(/\s+/g,' ').trim();
+     card.innerHTML=`
+       <div class="dishSummary">
+         <div class="dishSummaryMain">
+           <div class="dishSummaryTitle"><strong>${escapeHtml(item.name||'Novo prato')}</strong>${badges}</div>
+           <div class="dishSummaryMeta">
+             <span class="cat">${escapeHtml(item.category||'Sem categoria')}</span>
+             <span>•</span>
+             <span class="descPreview">${escapeHtml(preview)}</span>
+           </div>
+         </div>
+         <div class="dishPrice">${escapeHtml(item.price||'Sem preço')}</div>
+         <button class="editToggle" type="button">${expandedDishId===item.id?'Fechar':'Editar'}</button>
+       </div>
+       <div class="dishEditor">
+         <div class="dishGrid">
+           <div class="field"><label>Nome do prato</label><input class="f-name" value="${escapeHtml(item.name||'')}"></div>
+           <div class="field"><label>Categoria</label><input class="f-category" value="${escapeHtml(item.category||'')}"></div>
+           <div class="field"><label>Preço</label><input class="f-price" value="${escapeHtml(item.price||'')}" placeholder="R$ 00"></div>
+           <div class="field desc"><label>Descrição</label><textarea class="f-description">${escapeHtml(item.description||'')}</textarea></div>
+         </div>
+
+         <div class="statusPanel">
+           <div class="statusBox">
+             <div class="statusBoxTop">
+               <strong>Visível no site</strong>
+               <label class="toggle"><input class="f-visible" type="checkbox" ${item.visible!==false?'checked':''}><span class="toggleTrack"></span></label>
+             </div>
+             <small>Desative para esconder o prato totalmente do cardápio público.</small>
+           </div>
+           <div class="statusBox">
+             <div class="statusBoxTop">
+               <strong>Destaque</strong>
+               <label class="toggle"><input class="f-featured" type="checkbox" ${item.featured?'checked':''}><span class="toggleTrack"></span></label>
+             </div>
+             <small>Mostra o prato na seção “A Itália à mesa” da página inicial.</small>
+           </div>
+           <div class="statusBox">
+             <strong>Disponibilidade</strong>
+             <select class="availabilitySelect f-availability">
+               <option value="available" ${item.available!==false?'selected':''}>Disponível</option>
+               <option value="unavailable" ${item.available===false?'selected':''}>Indisponível</option>
+             </select>
+             <small>“Indisponível” mantém o prato visível, mas sinalizado para o cliente.</small>
+           </div>
+         </div>
+
+         <div class="dishActions">
+           <button class="btn primary saveDish">Salvar alterações</button>
+           <button class="btn soft duplicateDish">Duplicar</button>
+           <button class="miniBtn moveUp">↑ Subir</button>
+           <button class="miniBtn moveDown">↓ Descer</button>
+           <span class="spacer"></span>
+           <button class="btn danger deleteDish">Excluir</button>
+         </div>
+       </div>`;
+     card.querySelector('.editToggle').onclick=()=>{
+       expandedDishId=expandedDishId===item.id?null:item.id;
+       renderMenuItems();
+     };
+     card.querySelector('.saveDish').onclick=()=>saveMenuItem(item,card);
+     card.querySelector('.duplicateDish').onclick=()=>duplicateMenuItem(item);
+     card.querySelector('.deleteDish').onclick=()=>deleteMenuItem(item);
+     card.querySelector('.moveUp').onclick=()=>moveMenuItem(item,-1);
+     card.querySelector('.moveDown').onclick=()=>moveMenuItem(item,1);
+     target.appendChild(card);
+   });
+   list.appendChild(section);
  });
 }
 async function saveMenuItem(item,card){
@@ -186,7 +291,7 @@ async function saveMenuItem(item,card){
   description:card.querySelector('.f-description').value.trim(),
   visible:card.querySelector('.f-visible').checked,
   featured:card.querySelector('.f-featured').checked,
-  available:card.querySelector('.f-available').checked,
+  available:card.querySelector('.f-availability').value==='available',
   updated_at:new Date().toISOString()
  };
  if(!patch.name){alert('Informe o nome do prato.');setStatus('Aguardando correção','error');return}
@@ -200,7 +305,7 @@ async function addMenuItem(){
  const filter=el('menuCategoryFilter')?.value||'';
  const {data,error}=await sb.from('menu_items').insert({category:filter||'Pasta',name:'Novo prato',description:'',price:'',visible:true,featured:false,available:true,sort_order:max+10}).select().single();
  if(error){setStatus('Erro ao criar prato','error');alert(error.message);return}
- menuItems.push(data);setStatus('Novo prato criado');await loadMenuItems();
+ menuItems.push(data);expandedDishId=data.id;setStatus('Novo prato criado');await loadMenuItems();
  setTimeout(()=>{const cards=[...document.querySelectorAll('.dishEdit')];cards[cards.length-1]?.scrollIntoView({behavior:'smooth',block:'center'})},100);
 }
 async function duplicateMenuItem(item){
@@ -209,7 +314,7 @@ async function duplicateMenuItem(item){
  const copy={category:item.category,name:(item.name||'Prato')+' — cópia',description:item.description||'',price:item.price||'',visible:item.visible!==false,featured:false,available:item.available!==false,sort_order:max+10};
  const {data,error}=await sb.from('menu_items').insert(copy).select().single();
  if(error){setStatus('Erro ao duplicar','error');alert(error.message);return}
- setStatus('Prato duplicado');await loadMenuItems();
+ expandedDishId=data.id;setStatus('Prato duplicado');await loadMenuItems();
 }
 async function deleteMenuItem(item){
  if(!confirm(`Excluir "${item.name}" do cardápio?`))return;
