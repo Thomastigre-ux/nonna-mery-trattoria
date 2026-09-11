@@ -859,9 +859,10 @@ const publicAsset=path=>!path?"":(/^https?:\/\//i.test(path)?path:SUPABASE_URL+"
 
 async function loadCmsContent(){
  try{
-   const [contentRes,galleryRes]=await Promise.all([
+   const [contentRes,galleryRes,menuRes]=await Promise.all([
      fetch(SUPABASE_URL+"/rest/v1/site_content?id=eq.main&select=*",{headers:supabaseHeaders,cache:"no-store"}),
-     fetch(SUPABASE_URL+"/rest/v1/gallery_images?select=*&order=sort_order.asc,id.asc",{headers:supabaseHeaders,cache:"no-store"})
+     fetch(SUPABASE_URL+"/rest/v1/gallery_images?select=*&order=sort_order.asc,id.asc",{headers:supabaseHeaders,cache:"no-store"}),
+     fetch(SUPABASE_URL+"/rest/v1/menu_items?select=*&order=sort_order.asc,id.asc",{headers:supabaseHeaders,cache:"no-store"})
    ]);
    if(!contentRes.ok) throw new Error("Supabase indisponível");
    const rows=await contentRes.json();
@@ -885,6 +886,12 @@ async function loadCmsContent(){
    if(galleryRes.ok){
      const galleryRows=await galleryRes.json();
      if(Array.isArray(galleryRows)&&galleryRows.length) data.gallery=galleryRows.map(x=>publicAsset(x.image_path)).filter(Boolean);
+   }
+   if(menuRes.ok){
+     const menuRows=await menuRes.json();
+     if(Array.isArray(menuRows)&&menuRows.length){
+       data.dishes=menuRows.map(x=>({category:x.category,name:x.name,description:x.description,price:x.price,visible:x.visible!==false}));
+     }
    }
  }catch(err){
    console.warn("Supabase indisponível, tentando CMS anterior:",err);
