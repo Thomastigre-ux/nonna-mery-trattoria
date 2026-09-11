@@ -129,6 +129,11 @@ footer a{display:block;opacity:.68;margin:.7rem 0}footer a:hover{opacity:1}
 .ownerBtn{border:0;background:none;color:white;opacity:.35;font-size:.68rem;cursor:pointer;padding:0}
 .ownerBtn:hover{opacity:.65}
 
+.cmsNote{font-size:.78rem;line-height:1.55;opacity:.68;margin:.6rem 0 0}
+.cmsStatus{font-size:.78rem;line-height:1.5;padding:.75rem .9rem;border-radius:10px;background:#e8dfcf;margin:.8rem 0}
+.fileRow{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;margin-top:.6rem}
+.fileRow input[type=file]{max-width:100%}
+
 .mobileBar{display:none}
 .reveal{opacity:0;transform:translateY(24px);transition:.75s ease}.reveal.on{opacity:1;transform:none}
 
@@ -608,12 +613,24 @@ footer a{display:block;opacity:.68;margin:.7rem 0}footer a:hover{opacity:1}
    <div class="editBox">
     <h4>Fotos</h4>
     <div class="formGrid">
-     <div class="field full"><label>Foto principal — URL</label><input id="eHeroImage"></div>
-     <div class="field full"><label>Foto da casa — URL</label><input id="eStoryImage"></div>
-     <div class="field full"><label>Foto da experiência — URL</label><input id="eExperienceImage"></div>
-     <div class="field full"><label>Galeria — uma URL por linha</label><textarea id="eGallery" style="min-height:150px"></textarea></div>
+     <div class="field full"><label>Foto principal — URL</label><input id="eHeroImage"><div class="fileRow"><input id="eHeroUpload" type="file" accept="image/*"><span class="cmsNote">ou envie uma nova foto</span></div></div>
+     <div class="field full"><label>Foto da casa — URL</label><input id="eStoryImage"><div class="fileRow"><input id="eStoryUpload" type="file" accept="image/*"><span class="cmsNote">ou envie uma nova foto</span></div></div>
+     <div class="field full"><label>Foto da experiência — URL</label><input id="eExperienceImage"><div class="fileRow"><input id="eExperienceUpload" type="file" accept="image/*"><span class="cmsNote">ou envie uma nova foto</span></div></div>
+     <div class="field full"><label>Galeria — uma URL por linha</label><textarea id="eGallery" style="min-height:150px"></textarea><div class="fileRow"><input id="eGalleryUpload" type="file" accept="image/*" multiple><span class="cmsNote">novas fotos serão adicionadas à galeria</span></div></div>
     </div>
    </div>
+
+   <div class="editBox">
+    <h4>Cardápio em PDF</h4>
+    <div class="formGrid">
+     <div class="field full"><label>Link do PDF atual</label><input id="ePdfUrl" placeholder="https://..."></div>
+     <div class="field full"><label>Enviar novo PDF</label><input id="ePdfFile" type="file" accept="application/pdf"></div>
+    </div>
+    <div class="editActions" style="margin-top:.8rem"><button class="btn soft" type="button" onclick="previewCurrentPdf()">Abrir PDF atual</button></div>
+    <div id="pdfStatus" class="cmsStatus">Nenhum envio pendente.</div>
+   </div>
+
+   <div id="cmsStatus" class="cmsStatus">As alterações publicadas aqui ficam visíveis para todos os clientes.</div>
 
    <div class="editBox">
     <div style="display:flex;justify-content:space-between;gap:1rem;align-items:center"><h4 style="margin:0">Cardápio</h4><button class="btn soft" onclick="addDish()">+ Adicionar</button></div>
@@ -703,9 +720,7 @@ async function openOfficialPdf(ev){
   const url=await resolvePdfUrl();
   window.open(url,"_blank","noopener");
 }
-async function previewCurrentPdf(){
-  await openOfficialPdf();
-}
+async function previewCurrentPdf(){ const u=document.getElementById("ePdfUrl")?.value.trim()||data.pdfUrl; if(u) window.open(u,"_blank","noopener"); }
 async function removeCustomPdf(){
   await deletePdfBlob();
   if(currentPdfObjectUrl){ URL.revokeObjectURL(currentPdfObjectUrl); currentPdfObjectUrl=null; }
@@ -751,7 +766,8 @@ const DEFAULT={
  dishes:[{"category":"Antipasti","name":"Insalata della Nonna Mery","description":"Folhas de rúcula e alface com cogumelos Paris, presunto cru, amêndoas laminadas, lascas de queijo parmesão e molho de laranja.","price":"R$ 45","visible":true},{"category":"Antipasti","name":"Panzanella Toscana","description":"Salada com tomates italianos, cebola roxa, pepinos, folhas de rúcula, manjericão e pães salteados em azeite de oliva extravirgem.","price":"R$ 45","visible":true},{"category":"Antipasti","name":"Burrata con Pomodorini Arrosti","description":"Burrata de búfala servida com molho pesto, tomates-cereja assados com azeite de oliva extravirgem. Acompanha pães.","price":"R$ 72","visible":true},{"category":"Antipasti","name":"Parmigiana di Melanzane","description":"Berinjela em camadas com queijo muçarela e molho de tomates italianos, finalizada com queijo parmesão.","price":"R$ 55","visible":true},{"category":"Antipasti","name":"Tartara di Pesce Bianco","description":"Filé de peixe branco preparado na ponta da faca, com queijo mascarpone e salsa tártara.","price":"R$ 55","visible":true},{"category":"Antipasti","name":"Baccalà Mantecato","description":"Emulsão de bacalhau com azeite de oliva extravirgem. Acompanha pão ciabatta.","price":"R$ 65","visible":true},{"category":"Antipasti","name":"Tagliata di Manzo Tartufata","description":"Fatias de filé mignon seladas em azeite de oliva servidas com folhas de rúcula, tomate-cereja, lascas de queijo parmesão e azeite trufado. Acompanha pães.","price":"R$ 72","visible":true},{"category":"Pasta","name":"Duo della Mery","description":"Nhoque alla Bolognese tradicional, seguido de nhoque recheado com geleia de damasco. Receita típica de Trieste — Friuli Venezia Giulia.","price":"R$ 92","visible":true},{"category":"Pasta","name":"Spaghetti al Sugo di Pomodoro e Basilico","description":"Spaghetti ao molho de tomates italianos e manjericão.","price":"R$ 52","visible":true},{"category":"Pasta","name":"Spaghetti Amatriciana","description":"Spaghetti à moda de Amatrice, com molho de tomates italianos, guanciale e queijo pecorino.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Spaghetti alla Carbonara","description":"Spaghetti à moda de Roma, com creme de ovos, guanciale e queijo pecorino.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Spaghetti alla Bolognese","description":"Spaghetti com ragù de carne à moda de Bologna.","price":"R$ 65","visible":true},{"category":"Pasta","name":"Penne al Salmone Affumicato","description":"Penne com cubos de salmão e molho cremoso com páprica defumada.","price":"R$ 85","visible":true},{"category":"Pasta","name":"Penne ai Funghi Trifolati","description":"Penne ao molho cremoso de cogumelos salteados em azeite de oliva extravirgem, alho e salsinha.","price":"R$ 75","visible":true},{"category":"Pasta","name":"Spaghetti allo Scoglio","description":"Spaghetti com frutos do mar (camarão, lula e mexilhão) salteados no vinho.","price":"R$ 98","visible":true},{"category":"Pasta","name":"Lasagna alla Bolognese","description":"Lasanha tradicional com molho bolonhesa, molho bechamel e queijo parmesão gratinado.","price":"R$ 78","visible":true},{"category":"Pasta","name":"Spaghetti alla Puttanesca","description":"Spaghetti com molho de tomate, alho, alici, azeitonas pretas e alcaparras.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Penne al Pesto","description":"Penne com molho à base de manjericão, nozes, alho, queijo parmesão e azeite de oliva extravirgem.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Gnocchi alla Sorrentina","description":"Nhoque com molho de tomate, manjericão e muçarela de búfala, gratinado com queijo parmesão.","price":"R$ 68","visible":true},{"category":"Risotti","name":"Risotto ai Funghi Trifolati Tartufato","description":"Risoto com cogumelos mistos, finalizado com azeite de trufas.","price":"R$ 79","visible":true},{"category":"Risotti","name":"Risotto Caprese","description":"Risoto de tomates-cereja, manjericão e muçarela de búfala, finalizado com pesto.","price":"R$ 75","visible":true},{"category":"Risotti","name":"Risotto ai Frutti di Mare","description":"Risoto de frutos do mar (camarão, lula e mexilhão) com caldo de crustáceos.","price":"R$ 98","visible":true},{"category":"Risotti","name":"Risotto al Limone","description":"Risoto de limão siciliano com creme de parmesão.","price":"R$ 68","visible":true},{"category":"Pesce","name":"Gamberi alla Fiamma","description":"Camarões médios flambados com conhaque, servidos com risoto de ervilhas e hortelã.","price":"R$ 98","visible":true},{"category":"Pesce","name":"Pesce in Crosta","description":"Pescado do dia em crosta de castanha e ervas com purê de batatas e tomates-cereja assados, ou risoto de limão siciliano.","price":"R$ 95","visible":true},{"category":"Pesce","name":"Salmone al Cartoccio","description":"Salmão assado no forno com azeitonas pretas, tomates-cereja e lascas de gengibre, servido com risoto de limão siciliano.","price":"R$ 129","visible":true},{"category":"Carne","name":"Brasato al Vino Rosso","description":"Carne braseada com molho de vinho tinto, servida com polenta branca cremosa.","price":"R$ 85","visible":true},{"category":"Carne","name":"Filetto al Pepe Verde","description":"Filé mignon ao molho de pimenta verde, servido com risoto de queijo parmesão ou spaghetti na manteiga.","price":"R$ 98","visible":true},{"category":"Carne","name":"Filetto alla Senape","description":"Mignon ao molho de mostarda, servido com risoto de queijo parmesão ou spaghetti na manteiga.","price":"R$ 98","visible":true},{"category":"Carne","name":"Stinco di Agnello Brasato","description":"Canela de cordeiro braseada em baixa temperatura com vinho tinto, servida com nhoque na manteiga e sálvia.","price":"R$ 139","visible":true},{"category":"Carne","name":"Pollo alla Cacciatora","description":"Coxa e sobrecoxa de frango ao molho caçador, servido com polenta branca cremosa.","price":"R$ 75","visible":true},{"category":"Carne","name":"Bocconcini di Ossobuco","description":"Ossobuco em cubos, acompanhado de risoto alla milanese (risoto de açafrão).","price":"R$ 105","visible":true},{"category":"Bambini","name":"Gnocchi Junior","description":"Nhoque ao molho de tomates italianos e manjericão fresco.","price":"R$ 48","visible":true},{"category":"Bambini","name":"Filetto di Manzo","description":"Escalope de mignon com arroz e batata chips ou spaghetti na manteiga.","price":"R$ 52","visible":true},{"category":"Bambini","name":"Spaghetti alla Bolognese","description":"Spaghetti com ragù de carne à moda de Bologna.","price":"R$ 48","visible":true},{"category":"Bambini","name":"Spaghetti al Burro","description":"Spaghetti salteado na manteiga.","price":"R$ 42","visible":true},{"category":"Dolci","name":"Tiramisù Friulano","description":"Tiramisù à moda clássica de Trieste, com creme mascarpone, café e cacau.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Pannacotta","description":"Sobremesa italiana com creme de avelãs e cobertura crocante.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Meringa all’Italiana","description":"Sorvete de mascarpone com suspiros, chantilly e frutas vermelhas.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Torta Caprese","description":"Torta de chocolate com farinha de amêndoas e compota de frutas vermelhas.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Mousse al Cioccolato","description":"Mousse de chocolate com chantilly e cereja.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Café","description":"Expresso Illy.","price":"R$ 12,50","visible":true},{"category":"Bebidas","name":"Água","description":"Com gás ou sem gás.","price":"R$ 7","visible":true},{"category":"Bebidas","name":"Refrigerantes","description":"Coca-Cola, Coca-Cola Zero, Guaraná, Guaraná Zero, Fanta Laranja, Sprite, Sprite Zero e Água Tônica.","price":"R$ 9","visible":true},{"category":"Bebidas","name":"Sucos Del Valle","description":"Pêssego, uva ou manga.","price":"R$ 12","visible":true},{"category":"Bebidas","name":"Chopp 300 ml","description":"Chopp Königs puro malte pilsen genuíno de Jaraguá do Sul.","price":"R$ 14","visible":true},{"category":"Bebidas","name":"Heineken Long Neck","description":"Cerveja long neck.","price":"R$ 16","visible":true},{"category":"Bebidas","name":"Heineken Zero Long Neck","description":"Cerveja zero álcool long neck.","price":"R$ 16","visible":true},{"category":"Bebidas","name":"Cerveja sem glúten Long Neck","description":"Cerveja long neck sem glúten.","price":"R$ 16","visible":true},{"category":"Drinks","name":"Gin Tônica","description":"Gin, água tônica, limão siciliano e especiarias.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Gin Tanqueray","description":"Tanqueray, água tônica e especiarias.","price":"R$ 40","visible":true},{"category":"Drinks","name":"Aperol Spritz","description":"Aperol, espumante, água com gás e laranja.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Caipirosca","description":"Vodka, açúcar e limão; opção com morango e limão siciliano.","price":"R$ 25","visible":true},{"category":"Drinks","name":"Negroni","description":"Gin, Campari, vermouth e laranja.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Negroni Sbagliato","description":"Campari, vermouth, espumante e laranja.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Mery Spritz","description":"Espumante, xarope Monin, água com gás e maçã verde.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Limoncello Spritz","description":"Espumante, limoncello, água com gás e limão siciliano.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Old Parr 12 anos","description":"Whisky.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Singleton Of Dufftown 12 anos","description":"Whisky.","price":"R$ 45","visible":true},{"category":"Drinks","name":"Licor 43","description":"Licor.","price":"R$ 25","visible":true},{"category":"Drinks","name":"Amaro Ramazzotti","description":"Licor amaro italiano.","price":"R$ 18","visible":true}]
 };
 const clone=o=>JSON.parse(JSON.stringify(o));
-let data=(()=>{try{return {...clone(DEFAULT),...JSON.parse(localStorage.getItem("nm_final")||"{}")}}catch(e){return clone(DEFAULT)}})();
+let data=clone(DEFAULT);
+let adminPassword="";
 
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function wa(){return "https://wa.me/"+String(data.whatsapp||"").replace(/\D/g,"")+"?text="+encodeURIComponent("Olá! Gostaria de reservar uma mesa na Nonna Mery.")}
@@ -788,10 +804,23 @@ function openEditor(){
     const f=document.getElementById("ePdfUrl");
     if(f) f.value=(data.pdfUrl||"cardapio-nonna-mery.pdf");
     const s=document.getElementById("pdfStatus");
-    if(s) s.textContent="PDF atual: "+(data.pdfUrl||"cardapio-nonna-mery.pdf")+". Se houver um PDF enviado neste navegador, ele terá prioridade.";
+    if(s) s.textContent="PDF atual: "+(data.pdfUrl||"cardapio-nonna-mery.pdf")+". Você pode enviar um novo PDF e publicar para todos.";
   },0);document.getElementById("editorOverlay").classList.add("open");document.getElementById("loginBox").style.display="block";document.getElementById("editorPanel").style.display="none";setTimeout(()=>document.getElementById("pin").focus(),50)}
 function closeEditor(){document.getElementById("editorOverlay").classList.remove("open");document.body.style.overflow=""}
-function loginEditor(){if(document.getElementById("pin").value==="2026"){document.getElementById("loginBox").style.display="none";document.getElementById("editorPanel").style.display="block";document.body.style.overflow="hidden";fillEditor()}else alert("PIN incorreto.")}
+async function loginEditor(){
+ const pin=document.getElementById("pin").value;
+ const status=document.getElementById("cmsStatus");
+ try{
+   const r=await fetch("/api/auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:pin})});
+   if(!r.ok) throw new Error("PIN incorreto");
+   adminPassword=pin;
+   document.getElementById("loginBox").style.display="none";
+   document.getElementById("editorPanel").style.display="block";
+   document.body.style.overflow="hidden";
+   fillEditor();
+   if(status) status.textContent="Painel conectado. As alterações serão publicadas para todos.";
+ }catch(err){ alert("PIN incorreto ou painel ainda não configurado."); }
+}
 function fillEditor(){Object.entries(fields).forEach(([id,key])=>document.getElementById(id).value=data[key]||"");document.getElementById("eGallery").value=(data.gallery||[]).join("\n");renderDishEditor()}
 function renderDishEditor(){
  const root=document.getElementById("dishEditor");root.innerHTML="";
@@ -808,11 +837,97 @@ function renderDishEditor(){
 function addDish(){data.dishes=data.dishes||[];data.dishes.push({category:"",name:"Novo prato",description:"",price:"",visible:true});renderDishEditor()}
 function removeDish(i){if(confirm("Remover este prato?")){data.dishes.splice(i,1);renderDishEditor()}}
 async function saveEditor(){
-  const pdfUrlField=document.getElementById("ePdfUrl");
-  if(pdfUrlField && pdfUrlField.value.trim()) data.pdfUrl=pdfUrlField.value.trim();
-  await handlePdfReplacement();Object.entries(fields).forEach(([id,key])=>data[key]=document.getElementById(id).value.trim());data.gallery=document.getElementById("eGallery").value.split("\n").map(x=>x.trim()).filter(Boolean);const pdfUrlField2=document.getElementById("ePdfUrl"); if(pdfUrlField2 && pdfUrlField2.value.trim()) data.pdfUrl=pdfUrlField2.value.trim();
- localStorage.setItem("nm_final",JSON.stringify(data));render();alert("Alterações salvas.");}
-render();
+ const status=document.getElementById("cmsStatus");
+ try{
+   if(!adminPassword) throw new Error("Faça login novamente.");
+   if(status) status.textContent="Publicando alterações…";
+
+   Object.entries(fields).forEach(([id,key])=>data[key]=document.getElementById(id).value.trim());
+   data.gallery=document.getElementById("eGallery").value.split("\n").map(x=>x.trim()).filter(Boolean);
+
+   const heroFile=document.getElementById("eHeroUpload")?.files?.[0];
+   const storyFile=document.getElementById("eStoryUpload")?.files?.[0];
+   const expFile=document.getElementById("eExperienceUpload")?.files?.[0];
+   const galleryFiles=[...(document.getElementById("eGalleryUpload")?.files||[])];
+   const pdfFile=document.getElementById("ePdfFile")?.files?.[0];
+
+   if(heroFile){ status.textContent="Enviando foto principal…"; data.heroImage=await uploadAsset(heroFile,"hero"); document.getElementById("eHeroImage").value=data.heroImage; }
+   if(storyFile){ status.textContent="Enviando foto da casa…"; data.storyImage=await uploadAsset(storyFile,"story"); document.getElementById("eStoryImage").value=data.storyImage; }
+   if(expFile){ status.textContent="Enviando foto da experiência…"; data.experienceImage=await uploadAsset(expFile,"experience"); document.getElementById("eExperienceImage").value=data.experienceImage; }
+   for(const f of galleryFiles){ status.textContent="Enviando fotos da galeria…"; data.gallery.push(await uploadAsset(f,"gallery")); }
+   if(pdfFile){
+     status.textContent="Enviando novo cardápio PDF…";
+     data.pdfUrl=await uploadAsset(pdfFile,"menu");
+     document.getElementById("ePdfUrl").value=data.pdfUrl;
+   }else{
+     const pdfField=document.getElementById("ePdfUrl");
+     if(pdfField?.value.trim()) data.pdfUrl=pdfField.value.trim();
+   }
+
+   status.textContent="Salvando conteúdo…";
+   const r=await fetch("/api/cms",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:adminPassword,data})});
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok) throw new Error(j.error||"Falha ao publicar");
+   data={...clone(DEFAULT),...(j.data||data)};
+   render();
+   fillEditor();
+   status.textContent="Publicado com sucesso. Todos os visitantes já recebem o conteúdo atualizado.";
+   alert("Alterações publicadas com sucesso.");
+ }catch(err){
+   console.error(err);
+   if(status) status.textContent="Não foi possível publicar: "+err.message;
+   alert("Não foi possível publicar. "+err.message);
+ }
+}
+
+async function blobToBase64(blob){
+ return await new Promise((resolve,reject)=>{
+   const reader=new FileReader();
+   reader.onload=()=>resolve(String(reader.result).split(",")[1]||"");
+   reader.onerror=()=>reject(reader.error);
+   reader.readAsDataURL(blob);
+ });
+}
+async function optimizeImage(file){
+ if(!file.type.startsWith("image/")) return file;
+ if(file.type==="image/gif" || file.type==="image/svg+xml") return file;
+ const bitmap=await createImageBitmap(file);
+ const max=1800;
+ const scale=Math.min(1,max/Math.max(bitmap.width,bitmap.height));
+ const w=Math.max(1,Math.round(bitmap.width*scale)), h=Math.max(1,Math.round(bitmap.height*scale));
+ const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;
+ canvas.getContext("2d").drawImage(bitmap,0,0,w,h);
+ const blob=await new Promise(res=>canvas.toBlob(res,"image/jpeg",.86));
+ return blob || file;
+}
+async function uploadAsset(file,kind){
+ let blob=file;
+ let filename=file.name||"arquivo";
+ if(file.type.startsWith("image/")){
+   blob=await optimizeImage(file);
+   filename=filename.replace(/\.[^.]+$/,"")+".jpg";
+ }
+ if(blob.size>4*1024*1024) throw new Error("Arquivo muito grande. Use no máximo 4 MB.");
+ const contentBase64=await blobToBase64(blob);
+ const r=await fetch("/api/upload",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   password:adminPassword,filename,contentBase64,contentType:blob.type||file.type||"application/octet-stream",kind
+ })});
+ const j=await r.json().catch(()=>({}));
+ if(!r.ok) throw new Error(j.error||"Falha no envio");
+ return j.url;
+}
+async function loadCmsContent(){
+ try{
+   const r=await fetch("/api/cms?ts="+Date.now(),{cache:"no-store"});
+   if(!r.ok) throw new Error("CMS indisponível");
+   const j=await r.json();
+   if(j && j.data) data={...clone(DEFAULT),...j.data};
+ }catch(err){ console.warn("Usando conteúdo padrão:",err); }
+ render();
+}
+function initCms(){ loadCmsContent(); }
+
+initCms();
 </script>
 </body>
 </html>

@@ -1,0 +1,452 @@
+{
+  "heroLead": "Un piccolo pezzo d'Italia nel cuore di Jaraguá.",
+  "heroSubtitle": "Cucina italiana, bons vinhos e uma hospitalidade que transforma o jantar em lembrança.",
+  "storyTitle": "Uma história de família servida à mesa.",
+  "storyText": "A Nonna Mery nasceu das lembranças da infância, dos almoços de domingo e das celebrações em família. Receitas herdadas e trazidas ao Brasil mantêm viva a tradição do norte da Itália, o prazer de estar em companhia e o respeito pelo alimento.",
+  "address": "R. Cel. Procópio Gomes de Oliveira, 1115 · Centro · Jaraguá do Sul · SC",
+  "hours": "Terça a sábado · 19:00 — 23:00",
+  "phone": "+55 47 98455-2364",
+  "whatsapp": "5547984552364",
+  "instagram": "https://www.instagram.com/nonnamerytrattoria/",
+  "menuUrl": "https://www.instagram.com/nonnamerytrattoria/",
+  "pdfUrl": "cardapio-nonna-mery.pdf",
+  "heroImage": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8f/caption.jpg?h=1600&s=1&w=1600",
+  "storyImage": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8e/caption.jpg?h=1400&s=1&w=1400",
+  "experienceImage": "https://controle.jdv.com.br/wp-content/uploads/2025/06/burratta-nonna-mery-trattoria-jaragua.jpg",
+  "gallery": [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8f/caption.jpg?h=1400&s=1&w=1400",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/b8/e0/9d/caption.jpg?h=1200&s=1&w=1200",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8e/caption.jpg?h=1200&s=1&w=1200",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/c7/49/b9/caption.jpg?h=1200&s=1&w=1200",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/b8/e0/9e/caption.jpg?h=1200&s=1&w=1200"
+  ],
+  "dishes": [
+    {
+      "category": "Antipasti",
+      "name": "Insalata della Nonna Mery",
+      "description": "Folhas de rúcula e alface com cogumelos Paris, presunto cru, amêndoas laminadas, lascas de queijo parmesão e molho de laranja.",
+      "price": "R$ 45",
+      "visible": true
+    },
+    {
+      "category": "Antipasti",
+      "name": "Panzanella Toscana",
+      "description": "Salada com tomates italianos, cebola roxa, pepinos, folhas de rúcula, manjericão e pães salteados em azeite de oliva extravirgem.",
+      "price": "R$ 45",
+      "visible": true
+    },
+    {
+      "category": "Antipasti",
+      "name": "Burrata con Pomodorini Arrosti",
+      "description": "Burrata de búfala servida com molho pesto, tomates-cereja assados com azeite de oliva extravirgem. Acompanha pães.",
+      "price": "R$ 72",
+      "visible": true
+    },
+    {
+      "category": "Antipasti",
+      "name": "Parmigiana di Melanzane",
+      "description": "Berinjela em camadas com queijo muçarela e molho de tomates italianos, finalizada com queijo parmesão.",
+      "price": "R$ 55",
+      "visible": true
+    },
+    {
+      "category": "Antipasti",
+      "name": "Tartara di Pesce Bianco",
+      "description": "Filé de peixe branco preparado na ponta da faca, com queijo mascarpone e salsa tártara.",
+      "price": "R$ 55",
+      "visible": true
+    },
+    {
+      "category": "Antipasti",
+      "name": "Baccalà Mantecato",
+      "description": "Emulsão de bacalhau com azeite de oliva extravirgem. Acompanha pão ciabatta.",
+      "price": "R$ 65",
+      "visible": true
+    },
+    {
+      "category": "Antipasti",
+      "name": "Tagliata di Manzo Tartufata",
+      "description": "Fatias de filé mignon seladas em azeite de oliva servidas com folhas de rúcula, tomate-cereja, lascas de queijo parmesão e azeite trufado. Acompanha pães.",
+      "price": "R$ 72",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Duo della Mery",
+      "description": "Nhoque alla Bolognese tradicional, seguido de nhoque recheado com geleia de damasco. Receita típica de Trieste — Friuli Venezia Giulia.",
+      "price": "R$ 92",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Spaghetti al Sugo di Pomodoro e Basilico",
+      "description": "Spaghetti ao molho de tomates italianos e manjericão.",
+      "price": "R$ 52",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Spaghetti Amatriciana",
+      "description": "Spaghetti à moda de Amatrice, com molho de tomates italianos, guanciale e queijo pecorino.",
+      "price": "R$ 68",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Spaghetti alla Carbonara",
+      "description": "Spaghetti à moda de Roma, com creme de ovos, guanciale e queijo pecorino.",
+      "price": "R$ 68",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Spaghetti alla Bolognese",
+      "description": "Spaghetti com ragù de carne à moda de Bologna.",
+      "price": "R$ 65",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Penne al Salmone Affumicato",
+      "description": "Penne com cubos de salmão e molho cremoso com páprica defumada.",
+      "price": "R$ 85",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Penne ai Funghi Trifolati",
+      "description": "Penne ao molho cremoso de cogumelos salteados em azeite de oliva extravirgem, alho e salsinha.",
+      "price": "R$ 75",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Spaghetti allo Scoglio",
+      "description": "Spaghetti com frutos do mar (camarão, lula e mexilhão) salteados no vinho.",
+      "price": "R$ 98",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Lasagna alla Bolognese",
+      "description": "Lasanha tradicional com molho bolonhesa, molho bechamel e queijo parmesão gratinado.",
+      "price": "R$ 78",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Spaghetti alla Puttanesca",
+      "description": "Spaghetti com molho de tomate, alho, alici, azeitonas pretas e alcaparras.",
+      "price": "R$ 68",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Penne al Pesto",
+      "description": "Penne com molho à base de manjericão, nozes, alho, queijo parmesão e azeite de oliva extravirgem.",
+      "price": "R$ 68",
+      "visible": true
+    },
+    {
+      "category": "Pasta",
+      "name": "Gnocchi alla Sorrentina",
+      "description": "Nhoque com molho de tomate, manjericão e muçarela de búfala, gratinado com queijo parmesão.",
+      "price": "R$ 68",
+      "visible": true
+    },
+    {
+      "category": "Risotti",
+      "name": "Risotto ai Funghi Trifolati Tartufato",
+      "description": "Risoto com cogumelos mistos, finalizado com azeite de trufas.",
+      "price": "R$ 79",
+      "visible": true
+    },
+    {
+      "category": "Risotti",
+      "name": "Risotto Caprese",
+      "description": "Risoto de tomates-cereja, manjericão e muçarela de búfala, finalizado com pesto.",
+      "price": "R$ 75",
+      "visible": true
+    },
+    {
+      "category": "Risotti",
+      "name": "Risotto ai Frutti di Mare",
+      "description": "Risoto de frutos do mar (camarão, lula e mexilhão) com caldo de crustáceos.",
+      "price": "R$ 98",
+      "visible": true
+    },
+    {
+      "category": "Risotti",
+      "name": "Risotto al Limone",
+      "description": "Risoto de limão siciliano com creme de parmesão.",
+      "price": "R$ 68",
+      "visible": true
+    },
+    {
+      "category": "Pesce",
+      "name": "Gamberi alla Fiamma",
+      "description": "Camarões médios flambados com conhaque, servidos com risoto de ervilhas e hortelã.",
+      "price": "R$ 98",
+      "visible": true
+    },
+    {
+      "category": "Pesce",
+      "name": "Pesce in Crosta",
+      "description": "Pescado do dia em crosta de castanha e ervas com purê de batatas e tomates-cereja assados, ou risoto de limão siciliano.",
+      "price": "R$ 95",
+      "visible": true
+    },
+    {
+      "category": "Pesce",
+      "name": "Salmone al Cartoccio",
+      "description": "Salmão assado no forno com azeitonas pretas, tomates-cereja e lascas de gengibre, servido com risoto de limão siciliano.",
+      "price": "R$ 129",
+      "visible": true
+    },
+    {
+      "category": "Carne",
+      "name": "Brasato al Vino Rosso",
+      "description": "Carne braseada com molho de vinho tinto, servida com polenta branca cremosa.",
+      "price": "R$ 85",
+      "visible": true
+    },
+    {
+      "category": "Carne",
+      "name": "Filetto al Pepe Verde",
+      "description": "Filé mignon ao molho de pimenta verde, servido com risoto de queijo parmesão ou spaghetti na manteiga.",
+      "price": "R$ 98",
+      "visible": true
+    },
+    {
+      "category": "Carne",
+      "name": "Filetto alla Senape",
+      "description": "Mignon ao molho de mostarda, servido com risoto de queijo parmesão ou spaghetti na manteiga.",
+      "price": "R$ 98",
+      "visible": true
+    },
+    {
+      "category": "Carne",
+      "name": "Stinco di Agnello Brasato",
+      "description": "Canela de cordeiro braseada em baixa temperatura com vinho tinto, servida com nhoque na manteiga e sálvia.",
+      "price": "R$ 139",
+      "visible": true
+    },
+    {
+      "category": "Carne",
+      "name": "Pollo alla Cacciatora",
+      "description": "Coxa e sobrecoxa de frango ao molho caçador, servido com polenta branca cremosa.",
+      "price": "R$ 75",
+      "visible": true
+    },
+    {
+      "category": "Carne",
+      "name": "Bocconcini di Ossobuco",
+      "description": "Ossobuco em cubos, acompanhado de risoto alla milanese (risoto de açafrão).",
+      "price": "R$ 105",
+      "visible": true
+    },
+    {
+      "category": "Bambini",
+      "name": "Gnocchi Junior",
+      "description": "Nhoque ao molho de tomates italianos e manjericão fresco.",
+      "price": "R$ 48",
+      "visible": true
+    },
+    {
+      "category": "Bambini",
+      "name": "Filetto di Manzo",
+      "description": "Escalope de mignon com arroz e batata chips ou spaghetti na manteiga.",
+      "price": "R$ 52",
+      "visible": true
+    },
+    {
+      "category": "Bambini",
+      "name": "Spaghetti alla Bolognese",
+      "description": "Spaghetti com ragù de carne à moda de Bologna.",
+      "price": "R$ 48",
+      "visible": true
+    },
+    {
+      "category": "Bambini",
+      "name": "Spaghetti al Burro",
+      "description": "Spaghetti salteado na manteiga.",
+      "price": "R$ 42",
+      "visible": true
+    },
+    {
+      "category": "Dolci",
+      "name": "Tiramisù Friulano",
+      "description": "Tiramisù à moda clássica de Trieste, com creme mascarpone, café e cacau.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Dolci",
+      "name": "Pannacotta",
+      "description": "Sobremesa italiana com creme de avelãs e cobertura crocante.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Dolci",
+      "name": "Meringa all’Italiana",
+      "description": "Sorvete de mascarpone com suspiros, chantilly e frutas vermelhas.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Dolci",
+      "name": "Torta Caprese",
+      "description": "Torta de chocolate com farinha de amêndoas e compota de frutas vermelhas.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Dolci",
+      "name": "Mousse al Cioccolato",
+      "description": "Mousse de chocolate com chantilly e cereja.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Dolci",
+      "name": "Café",
+      "description": "Expresso Illy.",
+      "price": "R$ 12,50",
+      "visible": true
+    },
+    {
+      "category": "Bebidas",
+      "name": "Água",
+      "description": "Com gás ou sem gás.",
+      "price": "R$ 7",
+      "visible": true
+    },
+    {
+      "category": "Bebidas",
+      "name": "Refrigerantes",
+      "description": "Coca-Cola, Coca-Cola Zero, Guaraná, Guaraná Zero, Fanta Laranja, Sprite, Sprite Zero e Água Tônica.",
+      "price": "R$ 9",
+      "visible": true
+    },
+    {
+      "category": "Bebidas",
+      "name": "Sucos Del Valle",
+      "description": "Pêssego, uva ou manga.",
+      "price": "R$ 12",
+      "visible": true
+    },
+    {
+      "category": "Bebidas",
+      "name": "Chopp 300 ml",
+      "description": "Chopp Königs puro malte pilsen genuíno de Jaraguá do Sul.",
+      "price": "R$ 14",
+      "visible": true
+    },
+    {
+      "category": "Bebidas",
+      "name": "Heineken Long Neck",
+      "description": "Cerveja long neck.",
+      "price": "R$ 16",
+      "visible": true
+    },
+    {
+      "category": "Bebidas",
+      "name": "Heineken Zero Long Neck",
+      "description": "Cerveja zero álcool long neck.",
+      "price": "R$ 16",
+      "visible": true
+    },
+    {
+      "category": "Bebidas",
+      "name": "Cerveja sem glúten Long Neck",
+      "description": "Cerveja long neck sem glúten.",
+      "price": "R$ 16",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Gin Tônica",
+      "description": "Gin, água tônica, limão siciliano e especiarias.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Gin Tanqueray",
+      "description": "Tanqueray, água tônica e especiarias.",
+      "price": "R$ 40",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Aperol Spritz",
+      "description": "Aperol, espumante, água com gás e laranja.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Caipirosca",
+      "description": "Vodka, açúcar e limão; opção com morango e limão siciliano.",
+      "price": "R$ 25",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Negroni",
+      "description": "Gin, Campari, vermouth e laranja.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Negroni Sbagliato",
+      "description": "Campari, vermouth, espumante e laranja.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Mery Spritz",
+      "description": "Espumante, xarope Monin, água com gás e maçã verde.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Limoncello Spritz",
+      "description": "Espumante, limoncello, água com gás e limão siciliano.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Old Parr 12 anos",
+      "description": "Whisky.",
+      "price": "R$ 30",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Singleton Of Dufftown 12 anos",
+      "description": "Whisky.",
+      "price": "R$ 45",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Licor 43",
+      "description": "Licor.",
+      "price": "R$ 25",
+      "visible": true
+    },
+    {
+      "category": "Drinks",
+      "name": "Amaro Ramazzotti",
+      "description": "Licor amaro italiano.",
+      "price": "R$ 18",
+      "visible": true
+    }
+  ]
+}
