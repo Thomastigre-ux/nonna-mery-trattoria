@@ -1,4 +1,12 @@
-const { json, parseBody, verifyPassword, isConfigured, writeBinaryFile } = require('../lib/cms');
+const {
+  json,
+  parseBody,
+  verifyPassword,
+  isConfigured,
+  readJsonFile,
+  writeJsonFile,
+  writeBinaryFile
+} = require('../lib/cms');
 
 function safeName(name='arquivo') {
   return String(name)
@@ -32,9 +40,12 @@ module.exports = async function handler(req, res) {
       ? kind
       : 'uploads';
 
-   const name = kind === 'menu'
-  ? 'cardapio-nonna-mery.pdf'
-  : `${Date.now()}-${safeName(filename)}`;
+    // O PDF do cardápio sempre substitui o mesmo arquivo.
+    // Assim o administrador não precisa renomear nada manualmente.
+    const name = kind === 'menu'
+      ? 'cardapio-nonna-mery.pdf'
+      : `${Date.now()}-${safeName(filename)}`;
+
     const path = `assets/${folder}/${name}`;
     const buffer = Buffer.from(contentBase64, 'base64');
 
@@ -46,10 +57,33 @@ module.exports = async function handler(req, res) {
       return json(res, 413, { error: 'Arquivo muito grande. Use no máximo 4 MB.' });
     }
 
-    await writeBinaryFile(path, buffer, `CMS: enviar ${folder}`);
+    // Validação simples para impedir arquivo que não seja PDF real.
+    if (kind === 'menu') {
+      const header = buffer.subarray(0, 5).toString('ascii');
+      if (header !== '%PDF-') {
+        return json(res, 400, { error: 'O arquivo selecionado não é um PDF válido.' });
+      }
+    }
 
-    const url =
-      `https://raw.githubusercontent.com/Thomastigre-ux/nonna-mery-trattoria/main/${path}?v=${Date.now()}`;
+    await writeBinaryFile(path, buffer, `CMS: atualizar ${folder}`);
+
+    const version = Date.now();
+    const url = `https://raw.githubusercontent.com/Thomastigre-ux/nonna-mery-trattoria/main/${path}?v=${version}`;
+
+    // Ao trocar o cardápio, atualiza content.json automaticamente.
+    // Mesmo que o usuário não edite nenhum outro campo, o novo PDF vira o oficial.
+    if (kind === 'menu') {
+      let current = {};
+      try {
+        const result = await readJsonFile('content.json');
+        current = result?.data || {};
+      } catch (e) {
+        console.warn('Não foi possível ler content.json antes de atualizar o PDF:', e.message);
+      }
+
+      current.pdfUrl = url;
+      await writeJsonFile('content.json', current, 'CMS: atualizar cardápio oficial');
+    }
 
     return json(res, 200, { ok: true, url });
 
