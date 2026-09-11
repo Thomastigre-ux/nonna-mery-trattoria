@@ -553,7 +553,7 @@ footer a{display:block;opacity:.68;margin:.7rem 0}footer a:hover{opacity:1}
   </div>
   <div class="footerBottom">
    <span>Nonna Mery Trattoria · Jaraguá do Sul · SC</span>
-   <button class="ownerBtn" onclick="openEditor()">Área do Restaurante</button>
+   <button class="ownerBtn" onclick="location.href='/admin.html'">Área do Restaurante</button>
   </div>
  </div>
 </footer>
@@ -852,13 +852,47 @@ if(pdfInput){
   });
 }
 
+const SUPABASE_URL="https://ahglfciyzgmtfzicrzqa.supabase.co";
+const SUPABASE_KEY="sb_publishable_7ACGa6GvIcYEYiIuNV-OqQ_OZUWK6lJ";
+const supabaseHeaders={apikey:SUPABASE_KEY,Authorization:"Bearer "+SUPABASE_KEY};
+const publicAsset=path=>path?SUPABASE_URL+"/storage/v1/object/public/site-assets/"+path:"";
+
 async function loadCmsContent(){
  try{
-   const r=await fetch("/api/cms?ts="+Date.now(),{cache:"no-store"});
-   if(!r.ok) throw new Error("CMS indisponível");
-   const j=await r.json();
-   if(j && j.data) data={...clone(DEFAULT),...j.data};
- }catch(err){ console.warn("Usando conteúdo padrão:",err); }
+   const [contentRes,galleryRes]=await Promise.all([
+     fetch(SUPABASE_URL+"/rest/v1/site_content?id=eq.main&select=*",{headers:supabaseHeaders,cache:"no-store"}),
+     fetch(SUPABASE_URL+"/rest/v1/gallery_images?select=*&order=sort_order.asc,id.asc",{headers:supabaseHeaders,cache:"no-store"})
+   ]);
+   if(!contentRes.ok) throw new Error("Supabase indisponível");
+   const rows=await contentRes.json();
+   const c=rows&&rows[0];
+   if(c){
+     data={...clone(DEFAULT),
+       heroLead:c.hero_lead||DEFAULT.heroLead,
+       heroSubtitle:c.hero_subtitle||DEFAULT.heroSubtitle,
+       storyTitle:c.story_title||DEFAULT.storyTitle,
+       storyText:c.story_text||DEFAULT.storyText,
+       address:c.address||DEFAULT.address,
+       hours:c.hours||DEFAULT.hours,
+       phone:c.phone||DEFAULT.phone,
+       whatsapp:c.whatsapp||DEFAULT.whatsapp,
+       instagram:c.instagram||DEFAULT.instagram,
+       heroImage:publicAsset(c.hero_image_path)||DEFAULT.heroImage,
+       storyImage:publicAsset(c.story_image_path)||DEFAULT.storyImage,
+       experienceImage:publicAsset(c.experience_image_path)||DEFAULT.experienceImage
+     };
+   }
+   if(galleryRes.ok){
+     const galleryRows=await galleryRes.json();
+     if(Array.isArray(galleryRows)&&galleryRows.length) data.gallery=galleryRows.map(x=>publicAsset(x.image_path)).filter(Boolean);
+   }
+ }catch(err){
+   console.warn("Supabase indisponível, tentando CMS anterior:",err);
+   try{
+     const r=await fetch("/api/cms?ts="+Date.now(),{cache:"no-store"});
+     if(r.ok){const j=await r.json();if(j&&j.data)data={...clone(DEFAULT),...j.data};}
+   }catch(e){console.warn("Usando conteúdo padrão:",e)}
+ }
  render();
 }
 function initCms(){ loadCmsContent(); }
