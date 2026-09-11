@@ -22,7 +22,11 @@
 .imageCard .controls{display:flex;gap:6px;flex-wrap:wrap;padding:0 3px 5px}
 .miniBtn{border:1px solid var(--line);background:#f7f3eb;border-radius:999px;padding:7px 10px;font-size:.7rem}
 .menuTools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
-.menuTools select{border:1px solid var(--line);background:#fff;padding:10px 12px;border-radius:12px}
+.menuTools select,.menuTools input{border:1px solid var(--line);background:#fff;padding:10px 12px;border-radius:12px}
+.menuSearch{min-width:240px;flex:1}
+.flagLine{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.badgeFeatured{display:inline-block;padding:4px 8px;border-radius:999px;background:#f4ead2;color:#725a2d;font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.badgeUnavailable{display:inline-block;padding:4px 8px;border-radius:999px;background:#f4dddd;color:#7b2d34;font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .menuEditorList{display:grid;gap:12px;margin-top:14px}
 .dishEdit{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px}
 .dishHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
@@ -69,8 +73,16 @@
 <div class="panel">
  <div class="panelHead"><div><h2>Cardápio online</h2><div class="hint">Edite pratos, descrições, preços, categorias e o que fica visível no site.</div></div><button class="btn primary" onclick="addMenuItem()">+ Novo prato</button></div>
  <div class="menuTools">
+  <input id="menuSearch" class="menuSearch" type="search" placeholder="Buscar prato pelo nome…" oninput="renderMenuItems()">
   <label for="menuCategoryFilter">Categoria</label>
   <select id="menuCategoryFilter" onchange="renderMenuItems()"><option value="">Todas</option></select>
+  <select id="menuStatusFilter" onchange="renderMenuItems()">
+   <option value="">Todos os status</option>
+   <option value="featured">Destaques</option>
+   <option value="unavailable">Indisponíveis</option>
+   <option value="hidden">Ocultos</option>
+  </select>
+  <a class="btn soft" href="/" target="_blank" style="text-decoration:none">Pré-visualizar site ↗</a>
   <span class="hint" id="menuCount">0 itens</span>
  </div>
  <div id="menuEditorList" class="menuEditorList"></div>
@@ -121,13 +133,23 @@ function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;',
 function renderMenuItems(){
  const list=el('menuEditorList'); if(!list)return;
  const filter=el('menuCategoryFilter')?.value||'';
- const rows=menuItems.filter(x=>!filter||x.category===filter);
+ const status=el('menuStatusFilter')?.value||'';
+ const q=(el('menuSearch')?.value||'').trim().toLowerCase();
+ const rows=menuItems.filter(x=>{
+   if(filter&&x.category!==filter)return false;
+   if(q&&!String(x.name||'').toLowerCase().includes(q))return false;
+   if(status==='featured'&&!x.featured)return false;
+   if(status==='unavailable'&&x.available!==false)return false;
+   if(status==='hidden'&&x.visible!==false)return false;
+   return true;
+ });
  el('menuCount').textContent=`${rows.length} ${rows.length===1?'item':'itens'}`;
  list.innerHTML='';
  rows.forEach(item=>{
    const card=document.createElement('div');card.className='dishEdit';
+   const badges=`${item.featured?'<span class="badgeFeatured">Destaque</span>':''}${item.available===false?'<span class="badgeUnavailable">Indisponível</span>':''}`;
    card.innerHTML=`
-    <div class="dishHead"><div><strong>${escapeHtml(item.name||'Novo prato')}</strong><div class="hint">${escapeHtml(item.category||'Sem categoria')}</div></div>
+    <div class="dishHead"><div><strong>${escapeHtml(item.name||'Novo prato')}</strong><div class="hint">${escapeHtml(item.category||'Sem categoria')}</div><div style="margin-top:6px">${badges}</div></div>
       <label class="switchLine"><input class="f-visible" type="checkbox" ${item.visible!==false?'checked':''}> Visível no site</label>
     </div>
     <div class="dishGrid">
@@ -136,13 +158,19 @@ function renderMenuItems(){
       <div class="field"><label>Preço</label><input class="f-price" value="${escapeHtml(item.price||'')}" placeholder="R$ 00"></div>
       <div class="field desc"><label>Descrição</label><textarea class="f-description">${escapeHtml(item.description||'')}</textarea></div>
     </div>
+    <div class="flagLine">
+      <label class="switchLine"><input class="f-featured" type="checkbox" ${item.featured?'checked':''}> Mostrar como destaque na seção “A Itália à mesa”</label>
+      <label class="switchLine"><input class="f-available" type="checkbox" ${item.available!==false?'checked':''}> Disponível hoje</label>
+    </div>
     <div class="dishActions">
       <button class="btn primary saveDish">Salvar prato</button>
+      <button class="btn soft duplicateDish">Duplicar</button>
       <button class="miniBtn moveUp">↑ Subir</button>
       <button class="miniBtn moveDown">↓ Descer</button>
       <button class="btn danger deleteDish">Excluir</button>
     </div>`;
    card.querySelector('.saveDish').onclick=()=>saveMenuItem(item,card);
+   card.querySelector('.duplicateDish').onclick=()=>duplicateMenuItem(item);
    card.querySelector('.deleteDish').onclick=()=>deleteMenuItem(item);
    card.querySelector('.moveUp').onclick=()=>moveMenuItem(item,-1);
    card.querySelector('.moveDown').onclick=()=>moveMenuItem(item,1);
@@ -157,21 +185,31 @@ async function saveMenuItem(item,card){
   price:card.querySelector('.f-price').value.trim(),
   description:card.querySelector('.f-description').value.trim(),
   visible:card.querySelector('.f-visible').checked,
+  featured:card.querySelector('.f-featured').checked,
+  available:card.querySelector('.f-available').checked,
   updated_at:new Date().toISOString()
  };
  if(!patch.name){alert('Informe o nome do prato.');setStatus('Aguardando correção','error');return}
  const {data,error}=await sb.from('menu_items').update(patch).eq('id',item.id).select().single();
  if(error){setStatus('Erro ao salvar','error');alert(error.message);return}
- Object.assign(item,data);setStatus('Prato salvo');await loadMenuItems();
+ Object.assign(item,data);setStatus('Prato salvo e publicado');await loadMenuItems();
 }
 async function addMenuItem(){
  setStatus('Criando prato…','busy');
  const max=menuItems.reduce((m,x)=>Math.max(m,Number(x.sort_order)||0),0);
  const filter=el('menuCategoryFilter')?.value||'';
- const {data,error}=await sb.from('menu_items').insert({category:filter||'Pasta',name:'Novo prato',description:'',price:'',visible:true,sort_order:max+10}).select().single();
+ const {data,error}=await sb.from('menu_items').insert({category:filter||'Pasta',name:'Novo prato',description:'',price:'',visible:true,featured:false,available:true,sort_order:max+10}).select().single();
  if(error){setStatus('Erro ao criar prato','error');alert(error.message);return}
  menuItems.push(data);setStatus('Novo prato criado');await loadMenuItems();
  setTimeout(()=>{const cards=[...document.querySelectorAll('.dishEdit')];cards[cards.length-1]?.scrollIntoView({behavior:'smooth',block:'center'})},100);
+}
+async function duplicateMenuItem(item){
+ setStatus('Duplicando prato…','busy');
+ const max=menuItems.reduce((m,x)=>Math.max(m,Number(x.sort_order)||0),0);
+ const copy={category:item.category,name:(item.name||'Prato')+' — cópia',description:item.description||'',price:item.price||'',visible:item.visible!==false,featured:false,available:item.available!==false,sort_order:max+10};
+ const {data,error}=await sb.from('menu_items').insert(copy).select().single();
+ if(error){setStatus('Erro ao duplicar','error');alert(error.message);return}
+ setStatus('Prato duplicado');await loadMenuItems();
 }
 async function deleteMenuItem(item){
  if(!confirm(`Excluir "${item.name}" do cardápio?`))return;
