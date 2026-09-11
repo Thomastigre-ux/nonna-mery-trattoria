@@ -103,7 +103,11 @@ module.exports = async function handler(req, res) {
     await writeBinaryFile(path, buffer, `CMS: atualizar ${folder}`);
 
     const version = Date.now();
-    const url = `https://raw.githubusercontent.com/Thomastigre-ux/nonna-mery-trattoria/main/${path}?v=${version}`;
+
+    // Usa URL do próprio site/Vercel, evitando problemas do Safari com raw.githubusercontent.com.
+    const url = kind === 'menu'
+      ? `/assets/menu/cardapio-nonna-mery.pdf?v=${version}`
+      : `/assets/${folder}/${name}?v=${version}`;
 
     if (kind === 'menu') {
       let current = {};
