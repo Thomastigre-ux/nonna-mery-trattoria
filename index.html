@@ -855,7 +855,7 @@ if(pdfInput){
 const SUPABASE_URL="https://ahglfciyzgmtfzicrzqa.supabase.co";
 const SUPABASE_KEY="sb_publishable_7ACGa6GvIcYEYiIuNV-OqQ_OZUWK6lJ";
 const supabaseHeaders={apikey:SUPABASE_KEY,Authorization:"Bearer "+SUPABASE_KEY};
-const publicAsset=path=>path?SUPABASE_URL+"/storage/v1/object/public/site-assets/"+path:"";
+const publicAsset=path=>!path?"":(/^https?:\/\//i.test(path)?path:SUPABASE_URL+"/storage/v1/object/public/site-assets/"+path);
 
 async function loadCmsContent(){
  try{
