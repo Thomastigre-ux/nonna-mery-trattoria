@@ -35,6 +35,7 @@ async function normalizePdf(buffer) {
     });
 
     const normalized = Buffer.from(bytes);
+
     if (normalized.subarray(0, 5).toString('ascii') !== '%PDF-') {
       throw new Error('Falha ao normalizar o PDF.');
     }
@@ -42,10 +43,14 @@ async function normalizePdf(buffer) {
     return { buffer: normalized, pageCount };
   } catch (err) {
     const message = String(err?.message || 'PDF inválido.');
+
     if (/encrypted|password/i.test(message)) {
       throw new Error('O PDF está protegido por senha. Envie uma versão sem proteção.');
     }
-    throw new Error('O PDF está corrompido ou possui estrutura inválida. Exporte-o novamente como PDF e tente de novo.');
+
+    throw new Error(
+      'O PDF está corrompido ou possui estrutura inválida. Exporte-o novamente como PDF e tente de novo.'
+    );
   }
 }
 
@@ -104,22 +109,29 @@ module.exports = async function handler(req, res) {
 
     const version = Date.now();
 
-    // Usa URL do próprio site/Vercel, evitando problemas do Safari com raw.githubusercontent.com.
     const url = kind === 'menu'
-      ? `/assets/menu/cardapio-nonna-mery.pdf?v=${version}`
+      ? `/api/menu?v=${version}`
       : `/assets/${folder}/${name}?v=${version}`;
 
     if (kind === 'menu') {
       let current = {};
+
       try {
         const result = await readJsonFile('content.json');
         current = result?.data || {};
       } catch (e) {
-        console.warn('Não foi possível ler content.json antes de atualizar o PDF:', e.message);
+        console.warn(
+          'Não foi possível ler content.json antes de atualizar o PDF:',
+          e.message
+        );
       }
 
       current.pdfUrl = url;
-      await writeJsonFile('content.json', current, 'CMS: atualizar cardápio oficial');
+      await writeJsonFile(
+        'content.json',
+        current,
+        'CMS: atualizar cardápio oficial'
+      );
     }
 
     return json(res, 200, {
@@ -130,6 +142,8 @@ module.exports = async function handler(req, res) {
     });
   } catch (e) {
     console.error(e);
-    return json(res, 500, { error: e.message || 'Falha no upload.' });
+    return json(res, 500, {
+      error: e.message || 'Falha no upload.'
+    });
   }
 };
