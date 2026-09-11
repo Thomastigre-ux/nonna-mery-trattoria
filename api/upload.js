@@ -32,7 +32,9 @@ module.exports = async function handler(req, res) {
       ? kind
       : 'uploads';
 
-    const name = `${Date.now()}-${safeName(filename)}`;
+   const name = kind === 'menu'
+  ? 'cardapio-nonna-mery.pdf'
+  : `${Date.now()}-${safeName(filename)}`;
     const path = `assets/${folder}/${name}`;
     const buffer = Buffer.from(contentBase64, 'base64');
 
