@@ -4,869 +4,169 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f1913">
-<title>Nonna Mery Trattoria | Cucina Italiana em Jaraguá do Sul</title>
-<meta name="description" content="Nonna Mery Trattoria — cozinha italiana, vinhos e uma experiência única em Jaraguá do Sul.">
+<title>Nonna Mery Trattoria | Cardápio</title>
+<meta name="description" content="Cardápio oficial da Nonna Mery Trattoria em Jaraguá do Sul.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
- --ivory:#f4efe5; --ivory2:#e9dfcf; --ink:#151712;
- --emerald:#101a14; --emerald2:#1a281f; --wine:#6e2f37;
- --gold:#bda06f; --line:rgba(21,23,18,.14); --white:#fff;
- --serif:"Cormorant Garamond", Georgia, serif; --sans:"DM Sans", Arial, sans-serif;
+  --ivory:#f4efe5;
+  --ink:#171814;
+  --emerald:#0f1913;
+  --emerald2:#18271e;
+  --gold:#bea26f;
+  --goldsoft:#d7c39a;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"DM Sans",Arial,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);overflow-x:hidden}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+html,body{margin:0;min-height:100%}
+body{
+  font-family:var(--sans);
+  background:
+    radial-gradient(circle at 50% -10%,rgba(56,86,65,.58),transparent 32rem),
+    linear-gradient(180deg,#111d16 0%,#09100b 100%);
+  color:#fff;
+}
 a{text-decoration:none;color:inherit}
-img{display:block;width:100%;height:100%;object-fit:cover}
-button,input,textarea,select{font:inherit}
-.wrap{width:min(1220px,92vw);margin:auto}
-.kicker{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
-.display{font-family:var(--serif)}
+.wrap{width:min(1180px,92vw);margin:auto}
 nav{
- position:fixed;z-index:70;inset:0 0 auto;color:#fff;transition:.3s ease;
+  position:fixed;inset:0 0 auto;z-index:20;
+  background:rgba(8,14,10,.72);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
-nav.scrolled{background:rgba(12,20,15,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.09)}
 .navbar{height:82px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--serif);font-size:1.9rem;letter-spacing:.05em}
-.navlinks{display:flex;align-items:center;gap:1.6rem;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase}
-.navlinks a{opacity:.82;transition:.2s}.navlinks a:hover{opacity:1}
-.navcta{border:1px solid rgba(255,255,255,.5);padding:.82rem 1.05rem;border-radius:999px}
-.mobileMenu{display:none;background:none;border:0;color:white;font-size:1.3rem}
-
+.logo{font-family:var(--serif);font-size:2rem;letter-spacing:.03em}
+.navlinks{display:flex;gap:.8rem;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:999px;padding:.88rem 1.15rem;
+  border:1px solid rgba(255,255,255,.18);
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#13150f;font-weight:600}
 .hero{
- min-height:100svh;position:relative;display:flex;align-items:flex-end;color:white;background:#0c120e;overflow:hidden
+  min-height:100svh;
+  display:grid;
+  align-items:center;
+  padding:120px 0 60px;
 }
-.heroMedia{position:absolute;inset:0}
-.heroMedia img{filter:saturate(.86) contrast(1.04)}
-.heroMedia::after{
- content:"";position:absolute;inset:0;
- background:linear-gradient(90deg,rgba(5,9,6,.88) 0%,rgba(5,9,6,.56) 44%,rgba(5,9,6,.14) 100%),
- linear-gradient(0deg,rgba(5,9,6,.68) 0%,transparent 54%);
+.heroGrid{
+  display:grid;
+  grid-template-columns:1.1fr .7fr;
+  gap:7vw;
+  align-items:center;
 }
-.heroCopy{position:relative;z-index:2;padding:0 0 8vh;width:min(820px,92vw)}
-.hero h1{font-family:var(--serif);font-size:clamp(5rem,10vw,10rem);line-height:.72;font-weight:400;margin:.15rem 0 1.7rem;letter-spacing:-.05em}
-.hero h1 em{font-weight:400}
-.heroLead{font-family:var(--serif);font-size:clamp(1.55rem,2.35vw,2.3rem);line-height:1.25;max-width:670px;margin:0 0 .8rem}
-.heroSub{font-size:.98rem;line-height:1.8;max-width:570px;color:rgba(255,255,255,.72)}
-.actions{display:flex;gap:.85rem;flex-wrap:wrap;margin-top:2rem}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;border-radius:999px;padding:1rem 1.35rem;border:0;cursor:pointer;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:.22s}
-.btn:hover{transform:translateY(-2px)}
-.btn.light{background:var(--ivory);color:var(--ink)}
-.btn.outline{border:1px solid rgba(255,255,255,.42);color:white}
-.btn.dark{background:var(--emerald);color:#fff}
-.btn.gold{background:var(--gold);color:#14150f}
-.heroSeal{position:absolute;right:4vw;bottom:5vh;z-index:2;width:144px;aspect-ratio:1;border:1px solid rgba(255,255,255,.28);border-radius:50%;display:grid;place-items:center;text-align:center;padding:1rem;backdrop-filter:blur(8px)}
-.heroSeal b{font-family:var(--serif);font-size:1.1rem;font-weight:400}.heroSeal span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;opacity:.68}
-
-section{padding:8rem 0}
-h2{font-family:var(--serif);font-weight:400;font-size:clamp(3.7rem,6vw,6.7rem);line-height:.9;margin:.45rem 0 1.4rem;letter-spacing:-.025em}
-.story{background:var(--ivory2)}
-.storyGrid{display:grid;grid-template-columns:.95fr 1.05fr;gap:8vw;align-items:center}
-.storyPhoto{height:650px;border-radius:320px 320px 20px 20px;overflow:hidden;position:relative}
-.storyPhoto::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
-.storyText p{font-size:1rem;line-height:1.95;max-width:590px}
-.storyQuote{font-family:var(--serif);font-size:1.7rem;line-height:1.35;margin-top:2rem;color:var(--wine)}
-
-.ribbon{background:var(--emerald);color:#fff;padding:1.1rem 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
-.marquee{white-space:nowrap;display:flex;gap:2.5rem;font-family:var(--serif);font-size:1.45rem;letter-spacing:.03em;opacity:.88;animation:marquee 28s linear infinite}
-@keyframes marquee{to{transform:translateX(-50%)}}
-
-.gallery{background:var(--ivory);padding-top:6rem}
-.galleryHead{display:flex;align-items:end;justify-content:space-between;gap:2rem;margin-bottom:2.4rem}
-.galleryHead p{max-width:420px;line-height:1.75;opacity:.64}
-.galleryGrid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:330px 330px;gap:12px}
-.photo{overflow:hidden;border-radius:16px;position:relative;cursor:pointer;background:#d8d2c8}
-.photo:first-child{grid-row:1/3}
-.photo img{transition:transform .75s ease}.photo:hover img{transform:scale(1.04)}
-.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,10,8,.38),transparent 50%)}
-.photoTag{position:absolute;z-index:2;left:1rem;bottom:1rem;color:#fff;font-size:.67rem;letter-spacing:.11em;text-transform:uppercase}
-
-.menuSection{background:var(--emerald);color:#fff}
-.menuTop{display:flex;justify-content:space-between;gap:3rem;align-items:end}
-.menuTop p{max-width:440px;color:rgba(255,255,255,.63);line-height:1.8}
-.menuGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
-.menuCard{border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:1.6rem;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.025);transition:.25s}
-.menuCard:hover{transform:translateY(-4px);background:rgba(255,255,255,.05)}
-.menuCard h3{font-family:var(--serif);font-size:2.25rem;font-weight:400;margin:.35rem 0 .8rem}
-.menuCard p{color:rgba(255,255,255,.62);font-size:.88rem;line-height:1.65}
-.menuPrice{color:var(--gold);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase}
-.menuActions{margin-top:2.2rem;display:flex;gap:.8rem;flex-wrap:wrap}
-
-.experience{background:var(--wine);color:#fff;overflow:hidden;position:relative}
-.experience::before{content:"♪";position:absolute;right:-.04em;top:-.3em;font-family:var(--serif);font-size:40vw;line-height:1;opacity:.035}
-.expGrid{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center;position:relative;z-index:2}
-.expCopy p{font-size:1rem;line-height:1.95;color:rgba(255,255,255,.76)}
-.expPhoto{height:610px;border-radius:18px;overflow:hidden;position:relative}
-.expPhoto::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
-
-.reviews{background:var(--ivory)}
-.reviewTop{display:flex;justify-content:space-between;align-items:end;gap:2rem}
-.score{font-family:var(--serif);font-size:4.8rem;line-height:.8}.stars{color:var(--gold);letter-spacing:.18em;font-size:.78rem}
-.reviewGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
-.review{border-top:1px solid var(--line);padding:1.8rem 0 0;min-height:220px}
-.review q{font-family:var(--serif);font-size:1.75rem;line-height:1.32}
-.review small{display:block;margin-top:1.3rem;opacity:.55}
-
-.visit{background:var(--ivory2)}
-.visitGrid{display:grid;grid-template-columns:1fr 1fr;gap:8vw}
-.infoGrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0}
-.infoGrid h4{font-size:.68rem;letter-spacing:.17em;text-transform:uppercase;margin:0 0 .7rem}
-.infoGrid p{margin:0;line-height:1.75}
-.mapCard{min-height:500px;border-radius:20px;background:var(--emerald);color:white;padding:2rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.mapCard::before{content:"";position:absolute;inset:-20%;background:repeating-linear-gradient(30deg,transparent 0 75px,rgba(255,255,255,.035) 76px 77px),repeating-linear-gradient(115deg,transparent 0 110px,rgba(255,255,255,.03) 111px 112px)}
-.mapCard>*{position:relative;z-index:2}.pin{width:66px;aspect-ratio:1;border:1px solid rgba(255,255,255,.4);border-radius:50%;display:grid;place-items:center;font-size:1.3rem}
-.mapCard strong{font-family:var(--serif);font-size:2.5rem;font-weight:400;display:block;margin-bottom:.5rem}
-
-footer{background:#0a100c;color:#fff;padding:4rem 0 2rem}
-.footerGrid{display:grid;grid-template-columns:1.4fr .7fr .7fr;gap:3rem}
-.footerBrand{font-family:var(--serif);font-size:3.2rem}.footerTitle{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;opacity:.48;margin-bottom:1rem}
-footer a{display:block;opacity:.68;margin:.7rem 0}footer a:hover{opacity:1}
-.footerBottom{display:flex;justify-content:space-between;gap:2rem;border-top:1px solid rgba(255,255,255,.1);margin-top:3rem;padding-top:1.4rem;font-size:.68rem;opacity:.4}
-.ownerBtn{border:0;background:none;color:white;opacity:.35;font-size:.68rem;cursor:pointer;padding:0}
-.ownerBtn:hover{opacity:.65}
-
-.cmsNote{font-size:.78rem;line-height:1.55;opacity:.68;margin:.6rem 0 0}
-.cmsStatus{font-size:.78rem;line-height:1.5;padding:.75rem .9rem;border-radius:10px;background:#e8dfcf;margin:.8rem 0}
-.fileRow{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;margin-top:.6rem}
-.fileRow input[type=file]{max-width:100%}
-
-.mobileBar{display:none}
-.reveal{opacity:0;transform:translateY(24px);transition:.75s ease}.reveal.on{opacity:1;transform:none}
-
-/* modal menu */
-.modal{position:fixed;inset:0;z-index:110;background:rgba(6,10,7,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:3vw}
-.modal.open{display:flex}.modalPanel{background:var(--ivory);width:min(980px,96vw);max-height:90vh;overflow:auto;border-radius:22px;padding:2rem;position:relative}
-.modalClose{position:absolute;right:1.2rem;top:1rem;border:0;background:none;font-size:1.8rem;cursor:pointer}.modalPanel h3{font-family:var(--serif);font-size:3.2rem;font-weight:400;margin:.2rem 0 1.5rem}
-.fullMenuGrid{display:block}.menuCategory{margin:0 0 2.2rem}.menuCategoryTitle{font-family:var(--serif);font-size:2.25rem;color:var(--wine);border-bottom:1px solid var(--line);padding-bottom:.45rem;margin-bottom:.2rem}.menuCategoryItems{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem}.fullItem{padding:1rem 0;border-top:1px solid var(--line)}.fullItem b{font-family:var(--serif);font-size:1.35rem;font-weight:500}.fullItem p{font-size:.82rem;opacity:.65;line-height:1.55;margin:.35rem 0 0}
-
-/* owner editor */
-.editorOverlay{position:fixed;inset:0;z-index:130;background:rgba(5,8,6,.72);backdrop-filter:blur(10px);display:none}
-.editorOverlay.open{display:block}
-.login{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(420px,92vw);background:var(--ivory);padding:1.6rem;border-radius:18px}
-.login h3{font-family:var(--serif);font-size:2.4rem;font-weight:400;margin:.1rem 0 .6rem}
-.login p{font-size:.82rem;line-height:1.6;opacity:.65}
-.login input{width:100%;padding:.9rem;border:1px solid #d1c7b5;border-radius:10px;margin:.6rem 0 1rem}
-.editor{position:absolute;right:0;top:0;bottom:0;width:min(760px,100%);background:#f5efe4;overflow:auto;display:none}
-.editorTop{position:sticky;top:0;z-index:3;background:rgba(245,239,228,.96);backdrop-filter:blur(12px);border-bottom:1px solid #d7cdbb;padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
-.editorTop strong{font-family:var(--serif);font-size:1.7rem;font-weight:500}.editorBody{padding:1.2rem}
-.editBox{background:#fffaf1;border:1px solid #ddd2bf;border-radius:14px;padding:1.1rem;margin-bottom:1rem}.editBox h4{font-family:var(--serif);font-size:1.6rem;font-weight:500;margin:.1rem 0 1rem}
-.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.field{display:flex;flex-direction:column;gap:.35rem}.field.full{grid-column:1/-1}.field label{font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;opacity:.58}.field input,.field textarea,.field select{border:1px solid #d6ccba;background:white;border-radius:10px;padding:.8rem}.field textarea{min-height:90px;resize:vertical}
-.editActions{display:flex;gap:.6rem;flex-wrap:wrap}.save{background:var(--emerald);color:white}.soft{background:#e7dece}.danger{background:#efd4d6;color:#6e2f37}
-.editDish{border-top:1px solid #ddd2bf;padding-top:1rem;margin-top:1rem}
-
+.kicker{
+  color:var(--goldsoft);
+  font-size:.64rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+h1{
+  font-family:var(--serif);
+  font-size:clamp(4.2rem,9vw,8rem);
+  line-height:.8;
+  font-weight:400;
+  letter-spacing:-.04em;
+  margin:0;
+}
+h1 em{color:var(--goldsoft);font-weight:400}
+.lead{
+  max-width:640px;
+  color:rgba(255,255,255,.68);
+  line-height:1.85;
+  margin:1.6rem 0 0;
+}
+.actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}
+.card{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:2rem;
+  background:rgba(255,255,255,.035);
+  box-shadow:0 30px 90px rgba(0,0,0,.22);
+}
+.card h2{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:2.6rem;
+  margin:.1rem 0 1rem;
+}
+.card p{
+  color:rgba(255,255,255,.6);
+  line-height:1.75;
+  margin:0 0 1.5rem;
+}
+.small{
+  color:rgba(255,255,255,.42);
+  font-size:.72rem;
+  line-height:1.6;
+  margin-top:1rem;
+}
+footer{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:22px 0 30px;
+  color:rgba(255,255,255,.35);
+  font-size:.68rem;
+  text-align:center;
+}
 @media(max-width:820px){
- .navlinks{display:none}.mobileMenu{display:block}nav.open .navlinks{display:flex;position:absolute;left:0;right:0;top:82px;background:#0f1812;padding:1.4rem 4vw 2rem;flex-direction:column;align-items:flex-start}
- .heroSeal{display:none}.hero h1{font-size:clamp(5rem,22vw,8rem)}
- section{padding:5.2rem 0}.storyGrid,.expGrid,.visitGrid{grid-template-columns:1fr}.storyPhoto,.expPhoto{height:480px}
- .galleryHead,.menuTop,.reviewTop{display:block}.galleryGrid{grid-template-columns:1fr 1fr;grid-template-rows:350px 215px 215px}.photo:first-child{grid-column:1/3;grid-row:auto}
- .menuGrid,.reviewGrid{grid-template-columns:1fr}.infoGrid{grid-template-columns:1fr}.footerGrid{grid-template-columns:1fr 1fr}.footerBrand{grid-column:1/-1}.footerBottom{display:block;padding-bottom:5.6rem}
- .mobileBar{display:grid;position:fixed;z-index:75;left:12px;right:12px;bottom:12px;background:#101913;color:#fff;border-radius:999px;padding:6px;grid-template-columns:1fr 1.35fr;box-shadow:0 15px 40px rgba(0,0,0,.28)}.mobileBar a,.mobileBar button{text-align:center;padding:.83rem .45rem;border:0;background:none;color:#fff;border-radius:999px;font-size:.67rem;text-transform:uppercase;letter-spacing:.08em}.mobileBar .reserve{background:var(--ivory);color:var(--ink)}
- .menuCategoryItems{grid-template-columns:1fr}.formGrid{grid-template-columns:1fr}.field.full{grid-column:auto}
+  .heroGrid{grid-template-columns:1fr}
+  .card{max-width:620px}
 }
-
-/* CARDÁPIO OFICIAL INTEGRADO — adicionado sem alterar o layout original */
-.menuOfficial{background:var(--ivory);color:var(--ink);padding:8rem 0}
-.menuOfficialHead{display:flex;align-items:end;justify-content:space-between;gap:3rem;margin-bottom:2.5rem}
-.menuOfficialIntro{max-width:470px}.menuOfficialIntro p{line-height:1.8;opacity:.66;margin:0 0 1.4rem}
-.menuOfficialList{border-top:1px solid var(--line)}
-.menuOfficialCat{border-bottom:1px solid var(--line)}
-.menuOfficialCat summary{list-style:none;cursor:pointer;padding:1.4rem 0;display:flex;align-items:center;gap:1rem}
-.menuOfficialCat summary::-webkit-details-marker{display:none}
-.menuOfficialCat summary span{font-family:var(--serif);font-size:2.15rem;color:var(--wine)}
-.menuOfficialCat summary small{margin-left:auto;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.45}
-.menuOfficialCat summary:after{content:"+";font-family:var(--serif);font-size:1.6rem;margin-left:1rem}
-.menuOfficialCat[open] summary:after{content:"–"}
-.menuOfficialItems{display:grid;grid-template-columns:1fr 1fr;gap:0 2.2rem;padding-bottom:1.4rem}
-.menuOfficialItem{padding:1.05rem 0;border-top:1px solid rgba(21,23,18,.09)}
-.menuOfficialItemTop{display:flex;justify-content:space-between;gap:1.2rem;align-items:baseline}
-.menuOfficialItem h4{font-family:var(--serif);font-size:1.42rem;font-weight:500;margin:0}
-.menuOfficialItem strong{font-size:.78rem;color:var(--wine);white-space:nowrap}
-.menuOfficialItem p{font-size:.82rem;line-height:1.58;opacity:.62;margin:.35rem 0 0}
-@media(max-width:820px){
- .menuOfficial{padding:5.2rem 0}
- .menuOfficialHead{display:block}
- .menuOfficialIntro{margin-top:1.3rem}
- .menuOfficialItems{grid-template-columns:1fr}
- .menuOfficialCat summary span{font-size:1.85rem}
+@media(max-width:600px){
+  .navbar{height:74px}
+  .logo{font-size:1.65rem}
+  .navlinks .btn:first-child{display:none}
+  h1{font-size:clamp(3.7rem,17vw,5.6rem)}
 }
-
 </style>
 </head>
 <body>
-
-<nav id="nav">
- <div class="wrap navbar">
-  <a href="#inicio" class="logo">NONNA MERY</a>
-  <div class="navlinks">
-   <a href="#storia">La casa</a>
-   <a href="#galeria">Atmosfera</a>
-   <button onclick="document.getElementById('cardapio-oficial').scrollIntoView({behavior:'smooth'})" style="background:none;border:0;color:inherit;cursor:pointer;font:inherit;text-transform:inherit;letter-spacing:inherit;padding:0">Cardápio Nonna Mery</button>
-   <a href="#experiencia">Esperienza</a>
-   <a href="#visita">Contato</a>
-   <a id="navReserve" class="navcta" target="_blank">Reservar uma Mesa</a>
+<nav>
+  <div class="wrap navbar">
+    <a class="logo" href="/">Nonna Mery</a>
+    <div class="navlinks">
+      <a class="btn" href="https://www.instagram.com/nonnamerytrattoria/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn gold" href="/cardapio.html">Ver Cardápio</a>
+    </div>
   </div>
-  <button class="mobileMenu" aria-label="Abrir menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
- </div>
 </nav>
 
-<header class="hero" id="inicio">
- <div class="heroMedia"><img id="heroImage" alt="Nonna Mery Trattoria"></div>
- <div class="wrap">
-  <div class="heroCopy reveal">
-   <div class="kicker">Trattoria Italiana · Jaraguá do Sul</div>
-   <h1><span id="heroLine1">Nonna</span><br><em id="heroLine2">Mery</em></h1>
-   <p class="heroLead" id="heroLead"></p>
-   <p class="heroSub" id="heroSubtitle"></p>
-   <div class="actions">
-    <a id="heroReserve" class="btn light" target="_blank">Reservar uma mesa ↗</a>
-    <a class="btn outline" href="#cardapio-oficial">Ver Cardápio Completo</a>
-   </div>
-  </div>
- </div>
- <div class="heroSeal"><div><b>Vera cucina<br>italiana</b><br><span>Jaraguá do Sul</span></div></div>
-</header>
+<main class="hero">
+  <div class="wrap heroGrid">
+    <section>
+      <div class="kicker">Cucina Italiana · Jaraguá do Sul</div>
+      <h1>Nonna <em>Mery.</em></h1>
+      <p class="lead">
+        Uma experiência italiana feita de receitas de família, bons vinhos e hospitalidade.
+        Acesse o cardápio oficial em uma página própria, otimizada para celular e computador.
+      </p>
+      <div class="actions">
+        <a class="btn gold" href="/cardapio.html">Abrir Cardápio</a>
+        <a class="btn" href="https://wa.me/5547984552364?text=Olá!%20Gostaria%20de%20reservar%20uma%20mesa%20na%20Nonna%20Mery." target="_blank" rel="noopener">Reservar Mesa</a>
+      </div>
+    </section>
 
-<div class="ribbon"><div class="marquee">
- <span>✦ Cucina italiana</span><span>✦ Vini</span><span>✦ Ospitalità</span><span>✦ Musica</span><span>✦ Jaraguá do Sul</span>
- <span>✦ Cucina italiana</span><span>✦ Vini</span><span>✦ Ospitalità</span><span>✦ Musica</span><span>✦ Jaraguá do Sul</span>
-</div></div>
-
-<section class="story" id="storia">
- <div class="wrap storyGrid">
-  <div class="storyPhoto reveal"><img id="storyImage" alt="Ambiente da Nonna Mery"></div>
-  <div class="storyText reveal">
-   <div class="kicker">La nostra casa</div>
-   <h2 id="storyTitle"></h2>
-   <p id="storyText"></p>
-   <div class="storyQuote">“Una serata da ricordare.”</div>
+    <aside class="card">
+      <div class="kicker">Cardápio Oficial</div>
+      <h2>La tavola della Nonna.</h2>
+      <p>
+        O cardápio agora abre em um visualizador próprio do site, sem depender do leitor nativo de PDF do navegador.
+      </p>
+      <a class="btn gold" href="/cardapio.html">Entrar no Cardápio</a>
+      <div class="small">
+        Compatível com Safari, Chrome, Edge, Firefox, iPhone e Android.
+      </div>
+    </aside>
   </div>
- </div>
-</section>
-
-<section class="gallery" id="galeria">
- <div class="wrap">
-  <div class="galleryHead reveal">
-   <div><div class="kicker">Atmosfera</div><h2>Detalhes que<br>fazem a noite.</h2></div>
-   <p>Uma casa elegante, acolhedora e sem excessos — feita para apreciar o jantar com calma.</p>
-  </div>
-  <div class="galleryGrid" id="galleryGrid"></div>
- </div>
-</section>
-
-<section class="menuSection" id="menu">
- <div class="wrap">
-  <div class="menuTop reveal">
-   <div><div class="kicker">Dal menu</div><h2>A Itália<br>à mesa.</h2></div>
-   <p>Massas, risotos, carnes, pescados e uma carta de vinhos pensados para transformar o jantar em experiência.</p>
-  </div>
-  <div class="menuGrid" id="menuGrid"></div>
-  <div class="menuActions reveal">
-   <a class="btn gold" href="#cardapio-oficial">Ver Cardápio Completo</a>
-   <a id="externalMenu" class="btn outline" target="_blank">Instagram da Nonna Mery ↗</a>
-  </div>
- </div>
-</section>
-
-
-<section class="menuOfficial" id="cardapio-oficial">
- <div class="wrap">
-  <div class="menuOfficialHead reveal">
-   <div>
-    <div class="kicker">Menù completo</div>
-    <h2>Il nostro<br>cardápio.</h2>
-   </div>
-   <div class="menuOfficialIntro">
-    <p>Receitas italianas, massas, risotos, carnes, pescados, sobremesas e drinks reunidos no cardápio completo da Nonna Mery.</p>
-    <a class="btn dark" href="#" onclick="openOfficialPdf(event)">Ver Cardápio Completo ↗</a>
-   </div>
-  </div>
-  <div class="menuOfficialList"><details class="menuOfficialCat" open>
-      <summary><span>Antipasti</span><small>7 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Insalata della Nonna Mery</h4><strong>R$ 45</strong></div>
-          <p>Folhas de rúcula e alface com cogumelos Paris, presunto cru, amêndoas laminadas, lascas de parmesão e molho de laranja.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Panzanella Toscana</h4><strong>R$ 45</strong></div>
-          <p>Salada com tomates italianos, cebola roxa, pepinos, rúcula, manjericão e pães salteados em azeite extravirgem.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Burrata con Pomodorini Arrosti</h4><strong>R$ 72</strong></div>
-          <p>Burrata de búfala com pesto, tomates-cereja assados com azeite extravirgem; acompanha pães.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Parmigiana di Melanzane</h4><strong>R$ 55</strong></div>
-          <p>Berinjela em camadas com muçarela e molho de tomates italianos, finalizada com parmesão.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Tartara di Pesce Bianco</h4><strong>R$ 55</strong></div>
-          <p>Filé de peixe branco na ponta da faca, mascarpone e salsa tártara.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Baccalà Mantecato</h4><strong>R$ 65</strong></div>
-          <p>Emulsão de bacalhau com azeite extravirgem; acompanha pão ciabatta.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Tagliata di Manzo Tartufata</h4><strong>R$ 72</strong></div>
-          <p>Fatias de filé mignon seladas em azeite, rúcula, tomate-cereja, parmesão e azeite trufado; acompanha pães.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Pasta</span><small>12 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Duo della Mery</h4><strong>R$ 92</strong></div>
-          <p>Nhoque alla Bolognese tradicional seguido de nhoque recheado com geleia de damasco; receita de Trieste/Friuli Venezia Giulia.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti al Sugo di Pomodoro e Basilico</h4><strong>R$ 52</strong></div>
-          <p>Spaghetti ao molho de tomates italianos e manjericão.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti Amatriciana</h4><strong>R$ 68</strong></div>
-          <p>Spaghetti à moda de Amatrice, com molho de tomates italianos, guanciale e pecorino.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti alla Carbonara</h4><strong>R$ 68</strong></div>
-          <p>Spaghetti à moda de Roma, com creme de ovos, guanciale e queijo pecorino.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti alla Bolognese</h4><strong>R$ 65</strong></div>
-          <p>Spaghetti com ragù de carne à moda de Bologna.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Penne al Salmone Affumicato</h4><strong>R$ 85</strong></div>
-          <p>Penne com cubos de salmão e molho cremoso com páprica defumada.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Penne ai Funghi Trifolati</h4><strong>R$ 75</strong></div>
-          <p>Penne ao molho cremoso de cogumelos salteados em azeite extravirgem, alho e salsinha.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti allo Scoglio</h4><strong>R$ 98</strong></div>
-          <p>Spaghetti com frutos do mar — camarão, lula e mexilhão — salteados no vinho.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Lasagna alla Bolognese</h4><strong>R$ 78</strong></div>
-          <p>Lasanha tradicional com molho bolonhesa, bechamel e parmesão gratinado.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti alla Puttanesca</h4><strong>R$ 68</strong></div>
-          <p>Spaghetti com molho de tomate, alho, alici, azeitonas pretas e alcaparras.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Penne al Pesto</h4><strong>R$ 68</strong></div>
-          <p>Penne com molho de manjericão, nozes, alho, parmesão e azeite extravirgem.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Gnocchi alla Sorrentina</h4><strong>R$ 68</strong></div>
-          <p>Nhoque com molho de tomate, manjericão e muçarela de búfala, gratinado com parmesão.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Risotti</span><small>4 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Risotto ai Funghi Trifolati Tartufato</h4><strong>R$ 79</strong></div>
-          <p>Risoto com cogumelos mistos, finalizado com azeite de trufas.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Risotto Caprese</h4><strong>R$ 75</strong></div>
-          <p>Risoto de tomates-cereja, manjericão e muçarela de búfala, finalizado com pesto.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Risotto ai Frutti di Mare</h4><strong>R$ 98</strong></div>
-          <p>Risoto de frutos do mar — camarão, lula e mexilhão — com caldo de crustáceos.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Risotto al Limone</h4><strong>R$ 68</strong></div>
-          <p>Risoto de limão siciliano com creme de parmesão.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Pesce</span><small>3 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Gamberi alla Fiamma</h4><strong>R$ 98</strong></div>
-          <p>Camarões médios flambados com conhaque, servidos com risoto de ervilhas e hortelã.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Pesce in Crosta</h4><strong>R$ 95</strong></div>
-          <p>Pescado do dia em crosta de castanha e ervas com purê de batatas e tomates-cereja assados, ou risoto de limão siciliano.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Salmone al Cartoccio</h4><strong>R$ 129</strong></div>
-          <p>Salmão assado no forno com azeitonas pretas, tomates-cereja e lascas de gengibre, servido com risoto de limão siciliano.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Carne</span><small>6 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Brasato al Vino Rosso</h4><strong>R$ 85</strong></div>
-          <p>Carne braseada com molho de vinho tinto, servida com polenta branca cremosa.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Filetto al Pepe Verde</h4><strong>R$ 98</strong></div>
-          <p>Filé mignon ao molho de pimenta verde, servido com risoto de parmesão ou spaghetti na manteiga.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Filetto alla Senape</h4><strong>R$ 98</strong></div>
-          <p>Mignon ao molho de mostarda, servido com risoto de parmesão ou spaghetti na manteiga.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Stinco di Agnello Brasato</h4><strong>R$ 139</strong></div>
-          <p>Canela de cordeiro braseada em baixa temperatura com vinho tinto, servida com nhoque na manteiga e sálvia.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Pollo alla Cacciatora</h4><strong>R$ 75</strong></div>
-          <p>Coxa e sobrecoxa de frango ao molho caçador, servida com polenta branca cremosa.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Bocconcini di Ossobuco</h4><strong>R$ 105</strong></div>
-          <p>Ossobuco em cubos, acompanhado de risotto alla milanese.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Bambini</span><small>4 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Gnocchi Junior</h4><strong>R$ 48</strong></div>
-          <p>Nhoque ao molho de tomates italianos e manjericão fresco.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Filetto di Manzo</h4><strong>R$ 52</strong></div>
-          <p>Escalope de mignon com arroz e batata chips ou spaghetti na manteiga.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti alla Bolognese</h4><strong>R$ 48</strong></div>
-          <p>Spaghetti com ragù de carne à moda de Bologna.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Spaghetti al Burro</h4><strong>R$ 42</strong></div>
-          <p>Spaghetti salteado na manteiga.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Dolci</span><small>6 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Tiramisù Friulano</h4><strong>R$ 30</strong></div>
-          <p>Tiramisù à moda clássica de Trieste, com mascarpone, café e cacau.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Pannacotta</h4><strong>R$ 30</strong></div>
-          <p>Sobremesa italiana com creme de avelãs e cobertura crocante.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Meringa all’Italiana</h4><strong>R$ 30</strong></div>
-          <p>Sorvete de mascarpone com suspiros, chantilly e frutas vermelhas.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Torta Caprese</h4><strong>R$ 30</strong></div>
-          <p>Torta de chocolate com farinha de amêndoas e compota de frutas vermelhas.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Mousse al Cioccolato</h4><strong>R$ 30</strong></div>
-          <p>Mousse de chocolate com chantilly e cereja.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Café</h4><strong>R$ 12,50</strong></div>
-          <p>Expresso Illy.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Bebidas</span><small>7 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Água</h4><strong>R$ 7</strong></div>
-          <p>Com gás ou sem gás.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Refrigerantes</h4><strong>R$ 9</strong></div>
-          <p>Coca-Cola, Coca-Cola Zero, Guaraná, Guaraná Zero, Fanta Laranja, Sprite, Sprite Zero e água tônica.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Sucos Del Valle</h4><strong>R$ 12</strong></div>
-          <p>Pêssego, uva ou manga.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Chopp 300 ml</h4><strong>R$ 14</strong></div>
-          <p>Königs puro malte pilsen de Jaraguá do Sul.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Heineken Long Neck</h4><strong>R$ 16</strong></div>
-          <p>Cerveja long neck.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Heineken Zero Long Neck</h4><strong>R$ 16</strong></div>
-          <p>Cerveja zero álcool long neck.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Sem Glúten Long Neck</h4><strong>R$ 16</strong></div>
-          <p>Cerveja long neck sem glúten.</p>
-        </article></div>
-    </details><details class="menuOfficialCat" >
-      <summary><span>Drinks</span><small>12 itens</small></summary>
-      <div class="menuOfficialItems"><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Gin Tônica</h4><strong>R$ 30</strong></div>
-          <p>Gin, água tônica, limão siciliano e especiarias.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Gin Tanqueray</h4><strong>R$ 40</strong></div>
-          <p>Tanqueray, água tônica e especiarias.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Aperol Spritz</h4><strong>R$ 30</strong></div>
-          <p>Aperol, espumante, água com gás e laranja.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Caipirosca</h4><strong>R$ 25</strong></div>
-          <p>Vodka, açúcar e limão.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Negroni</h4><strong>R$ 30</strong></div>
-          <p>Gin, Campari, vermouth e laranja.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Negroni Sbagliato</h4><strong>R$ 30</strong></div>
-          <p>Campari, vermouth, espumante e laranja.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Mery Spritz</h4><strong>R$ 30</strong></div>
-          <p>Espumante, xarope Monin, água com gás e maçã verde.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Limoncello Spritz</h4><strong>R$ 30</strong></div>
-          <p>Espumante, limoncello, água com gás e limão siciliano.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Old Parr 12 anos</h4><strong>R$ 30</strong></div>
-          <p>Whisky.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Singleton Of Dufftown 12 anos</h4><strong>R$ 45</strong></div>
-          <p>Whisky.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Licor 43</h4><strong>R$ 25</strong></div>
-          <p>Licor.</p>
-        </article><article class="menuOfficialItem">
-          <div class="menuOfficialItemTop"><h4>Amaro Ramazzotti</h4><strong>R$ 18</strong></div>
-          <p>Amaro italiano.</p>
-        </article></div>
-    </details></div>
- </div>
-</section>
-
-<section class="experience" id="experiencia">
- <div class="wrap expGrid">
-  <div class="expCopy reveal">
-   <div class="kicker">L'esperienza</div>
-   <h2>Quando a Itália também canta.</h2>
-   <p>Na Nonna Mery, a experiência não termina no prato. Clientes destacam o cuidado da casa, a hospitalidade e as apresentações de canções italianas do chef como parte de noites realmente especiais.</p>
-   <p>É cozinha, vinho, música e presença — no mesmo lugar.</p>
-  </div>
-  <div class="expPhoto reveal"><img id="experienceImage" alt="Experiência Nonna Mery"></div>
- </div>
-</section>
-
-<section class="reviews">
- <div class="wrap">
-  <div class="reviewTop reveal">
-   <div><div class="kicker">Dicono di noi</div><h2>Uma casa<br>que deixa marca.</h2></div>
-   <div><div class="score">4,8</div><div class="stars">★★★★★</div><div style="font-size:.65rem;opacity:.5;margin-top:.45rem">AVALIAÇÃO PÚBLICA</div></div>
-  </div>
-  <div class="reviewGrid">
-   <div class="review reveal"><q>Ambiente aconchegante e ótimo serviço. A canção italiana ao vivo foi uma grata surpresa.</q><small>Avaliação pública de cliente</small></div>
-   <div class="review reveal"><q>Uma experiência única, com a sensação de estar realmente na Itália.</q><small>Avaliação pública de cliente</small></div>
-   <div class="review reveal"><q>Comida excepcional, ambiente elegante e uma noite que vale repetir.</q><small>Avaliação pública de cliente</small></div>
-  </div>
- </div>
-</section>
-
-<section class="visit" id="visita">
- <div class="wrap visitGrid">
-  <div class="reveal">
-   <div class="kicker">Visiteci</div><h2>La tua tavola<br>ti aspetta.</h2>
-   <div class="infoGrid">
-    <div><h4>Endereço</h4><p id="address"></p></div>
-    <div><h4>Horário</h4><p id="hours"></p></div>
-   </div>
-   <div class="actions">
-    <a id="visitReserve" class="btn dark" target="_blank">Reservar pelo WhatsApp ↗</a>
-    <a class="btn dark" target="_blank" href="https://maps.google.com/?q=Nonna+Mery+Trattoria+Jaragua+do+Sul">Como Chegar ↗</a>
-   </div>
-  </div>
-  <div class="mapCard reveal">
-   <div class="pin">⌖</div>
-   <div><div class="kicker">Centro · Jaraguá do Sul</div><strong>Nonna Mery Trattoria</strong><div id="phone" style="opacity:.62"></div></div>
-  </div>
- </div>
-</section>
+</main>
 
 <footer>
- <div class="wrap">
-  <div class="footerGrid">
-   <div class="footerBrand">NONNA MERY</div>
-   <div><div class="footerTitle">Explore</div><a href="#storia">La casa</a><a href="#galeria">Atmosfera</a><a href="#cardapio-oficial">Cardápio Nonna Mery</a></div>
-   <div><div class="footerTitle">Conecte</div><a id="footerInstagram" target="_blank">Instagram da Nonna Mery ↗</a><a id="footerWhats" target="_blank">Reservar pelo WhatsApp ↗</a></div>
-  </div>
-  <div class="footerBottom">
-   <span>Nonna Mery Trattoria · Jaraguá do Sul · SC</span>
-   <button class="ownerBtn" onclick="openEditor()">Área do Restaurante</button>
-  </div>
- </div>
+  Nonna Mery Trattoria · Jaraguá do Sul · SC
 </footer>
-
-<div class="mobileBar">
- <a href="#cardapio-oficial">Cardápio Nonna Mery</a>
- <a id="mobileReserve" class="reserve" target="_blank">Reservar uma Mesa</a>
-</div>
-
-<!-- Cardápio modal -->
-<div class="modal" id="menuModal" onclick="if(event.target===this)closeMenu()">
- <div class="modalPanel">
-  <button class="modalClose" onclick="closeMenu()">×</button>
-  <div class="kicker">Nonna Mery</div>
-  <h3>Cardápio</h3>
-  <div class="fullMenuGrid" id="fullMenuGrid"></div>
-  <div class="actions" style="margin-top:1.5rem">
-   <a id="modalExternalMenu" class="btn dark" target="_blank">Instagram da Nonna Mery ↗</a>
-  </div>
- </div>
-</div>
-
-<!-- Área do restaurante -->
-<div class="editorOverlay" id="editorOverlay">
- <div class="login" id="loginBox">
-  <h3>Área do Restaurante</h3>
-  <p>Acesso para atualização de informações, fotos e cardápio.</p>
-  <input id="pin" type="password" inputmode="numeric" placeholder="PIN de acesso">
-  <div class="editActions">
-   <button class="btn save" onclick="loginEditor()">Entrar</button>
-   <button class="btn soft" onclick="closeEditor()">Cancelar</button>
-  </div>
- </div>
-
- <div class="editor" id="editorPanel">
-  <div class="editorTop">
-   <strong>Nonna Mery · Editar Conteúdo</strong>
-   <div class="editActions"><button class="btn soft" onclick="closeEditor()">Fechar</button><button class="btn save" onclick="saveEditor()">Salvar</button></div>
-  </div>
-  <div class="editorBody">
-   <div class="editBox">
-    <h4>Informações principais</h4>
-    <div class="formGrid">
-     <div class="field"><label>Frase destaque</label><input id="eHeroLead"></div>
-     <div class="field"><label>WhatsApp</label><input id="eWhatsapp"></div>
-     <div class="field full"><label>Texto de abertura</label><textarea id="eHeroSubtitle"></textarea></div>
-     <div class="field"><label>Título da história</label><input id="eStoryTitle"></div>
-     <div class="field"><label>Telefone exibido</label><input id="ePhone"></div>
-     <div class="field full"><label>Texto da história</label><textarea id="eStoryText"></textarea></div>
-     <div class="field full"><label>Endereço</label><input id="eAddress"></div>
-     <div class="field"><label>Horário</label><input id="eHours"></div>
-     <div class="field"><label>Instagram</label><input id="eInstagram"></div>
-     <div class="field full"><label>Link do Cardápio Oficial</label><input id="eMenuUrl"></div>
-    </div>
-   </div>
-
-   <div class="editBox">
-    <h4>Fotos</h4>
-    <div class="formGrid">
-     <div class="field full"><label>Foto principal — URL</label><input id="eHeroImage"><div class="fileRow"><input id="eHeroUpload" type="file" accept="image/*"><span class="cmsNote">ou envie uma nova foto</span></div></div>
-     <div class="field full"><label>Foto da casa — URL</label><input id="eStoryImage"><div class="fileRow"><input id="eStoryUpload" type="file" accept="image/*"><span class="cmsNote">ou envie uma nova foto</span></div></div>
-     <div class="field full"><label>Foto da experiência — URL</label><input id="eExperienceImage"><div class="fileRow"><input id="eExperienceUpload" type="file" accept="image/*"><span class="cmsNote">ou envie uma nova foto</span></div></div>
-     <div class="field full"><label>Galeria — uma URL por linha</label><textarea id="eGallery" style="min-height:150px"></textarea><div class="fileRow"><input id="eGalleryUpload" type="file" accept="image/*" multiple><span class="cmsNote">novas fotos serão adicionadas à galeria</span></div></div>
-    </div>
-   </div>
-
-   <div class="editBox">
-    <h4>Cardápio Oficial</h4>
-    <div class="formGrid">
-     <div class="field full"><label>Link do Cardápio Atual</label><input id="ePdfUrl" placeholder="https://..."></div>
-     <div class="field full"><label>Atualizar Cardápio</label><input id="ePdfFile" type="file" accept="application/pdf"></div>
-    </div>
-    <div class="editActions" style="margin-top:.8rem"><button class="btn soft" type="button" onclick="previewCurrentPdf()">Visualizar Cardápio Atual</button></div>
-    <div id="pdfStatus" class="cmsStatus">Nenhum envio pendente.</div>
-   </div>
-
-   <div id="cmsStatus" class="cmsStatus">As alterações publicadas aqui ficam visíveis para todos os clientes.</div>
-
-   <div class="editBox">
-    <div style="display:flex;justify-content:space-between;gap:1rem;align-items:center"><h4 style="margin:0">Cardápio</h4><button class="btn soft" onclick="addDish()">+ Adicionar</button></div>
-    <div id="dishEditor"></div>
-   </div>
-  </div>
- </div>
-</div>
-
-<script>
-
-// ===== Cardápio PDF oficial =====
-// O cardápio publicado vem sempre do CMS/GitHub.
-// Não usamos mais PDF salvo localmente no navegador, evitando versões antigas ou corrompidas.
-async function resolvePdfUrl(){
-  const stored = typeof data!=="undefined" ? data : DEFAULT;
-  if(stored && stored.pdfUrl && String(stored.pdfUrl).trim()) return String(stored.pdfUrl).trim();
-  return "assets/menu/cardapio-nonna-mery.pdf";
-}
-async function openOfficialPdf(ev){
-  if(ev) ev.preventDefault();
-  const url=await resolvePdfUrl();
-  window.open(url,"_blank","noopener");
-}
-async function previewCurrentPdf(){
-  const field=document.getElementById("ePdfUrl")?.value.trim();
-  const url=field || await resolvePdfUrl();
-  if(url) window.open(url,"_blank","noopener");
-}
-
-const DEFAULT={
- heroLead:"Un piccolo pezzo d'Italia nel cuore di Jaraguá.",
- heroSubtitle:"Cucina italiana, bons vinhos e uma hospitalidade que transforma o jantar em lembrança.",
- storyTitle:"Uma história de família servida à mesa.",
- storyText:"A Nonna Mery nasceu das lembranças da infância, dos almoços de domingo e das celebrações em família. Receitas herdadas e trazidas ao Brasil mantêm viva a tradição do norte da Itália, o prazer de estar em companhia e o respeito pelo alimento.",
- address:"R. Cel. Procópio Gomes de Oliveira, 1115 · Centro · Jaraguá do Sul · SC",
- hours:"Terça a sábado · 19:00 — 23:00",
- phone:"+55 47 98455-2364",
- whatsapp:"5547984552364",
- instagram:"https://www.instagram.com/nonnamerytrattoria/",
- menuUrl:"https://www.instagram.com/nonnamerytrattoria/",
- pdfUrl:"cardapio-nonna-mery.pdf",
- heroImage:"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8f/caption.jpg?h=1600&s=1&w=1600",
- storyImage:"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8e/caption.jpg?h=1400&s=1&w=1400",
- experienceImage:"https://controle.jdv.com.br/wp-content/uploads/2025/06/burratta-nonna-mery-trattoria-jaragua.jpg",
- gallery:[
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8f/caption.jpg?h=1400&s=1&w=1400",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/b8/e0/9d/caption.jpg?h=1200&s=1&w=1200",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/aa/dd/8e/caption.jpg?h=1200&s=1&w=1200",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/c7/49/b9/caption.jpg?h=1200&s=1&w=1200",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/b8/e0/9e/caption.jpg?h=1200&s=1&w=1200"
- ],
- dishes:[{"category":"Antipasti","name":"Insalata della Nonna Mery","description":"Folhas de rúcula e alface com cogumelos Paris, presunto cru, amêndoas laminadas, lascas de queijo parmesão e molho de laranja.","price":"R$ 45","visible":true},{"category":"Antipasti","name":"Panzanella Toscana","description":"Salada com tomates italianos, cebola roxa, pepinos, folhas de rúcula, manjericão e pães salteados em azeite de oliva extravirgem.","price":"R$ 45","visible":true},{"category":"Antipasti","name":"Burrata con Pomodorini Arrosti","description":"Burrata de búfala servida com molho pesto, tomates-cereja assados com azeite de oliva extravirgem. Acompanha pães.","price":"R$ 72","visible":true},{"category":"Antipasti","name":"Parmigiana di Melanzane","description":"Berinjela em camadas com queijo muçarela e molho de tomates italianos, finalizada com queijo parmesão.","price":"R$ 55","visible":true},{"category":"Antipasti","name":"Tartara di Pesce Bianco","description":"Filé de peixe branco preparado na ponta da faca, com queijo mascarpone e salsa tártara.","price":"R$ 55","visible":true},{"category":"Antipasti","name":"Baccalà Mantecato","description":"Emulsão de bacalhau com azeite de oliva extravirgem. Acompanha pão ciabatta.","price":"R$ 65","visible":true},{"category":"Antipasti","name":"Tagliata di Manzo Tartufata","description":"Fatias de filé mignon seladas em azeite de oliva servidas com folhas de rúcula, tomate-cereja, lascas de queijo parmesão e azeite trufado. Acompanha pães.","price":"R$ 72","visible":true},{"category":"Pasta","name":"Duo della Mery","description":"Nhoque alla Bolognese tradicional, seguido de nhoque recheado com geleia de damasco. Receita típica de Trieste — Friuli Venezia Giulia.","price":"R$ 92","visible":true},{"category":"Pasta","name":"Spaghetti al Sugo di Pomodoro e Basilico","description":"Spaghetti ao molho de tomates italianos e manjericão.","price":"R$ 52","visible":true},{"category":"Pasta","name":"Spaghetti Amatriciana","description":"Spaghetti à moda de Amatrice, com molho de tomates italianos, guanciale e queijo pecorino.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Spaghetti alla Carbonara","description":"Spaghetti à moda de Roma, com creme de ovos, guanciale e queijo pecorino.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Spaghetti alla Bolognese","description":"Spaghetti com ragù de carne à moda de Bologna.","price":"R$ 65","visible":true},{"category":"Pasta","name":"Penne al Salmone Affumicato","description":"Penne com cubos de salmão e molho cremoso com páprica defumada.","price":"R$ 85","visible":true},{"category":"Pasta","name":"Penne ai Funghi Trifolati","description":"Penne ao molho cremoso de cogumelos salteados em azeite de oliva extravirgem, alho e salsinha.","price":"R$ 75","visible":true},{"category":"Pasta","name":"Spaghetti allo Scoglio","description":"Spaghetti com frutos do mar (camarão, lula e mexilhão) salteados no vinho.","price":"R$ 98","visible":true},{"category":"Pasta","name":"Lasagna alla Bolognese","description":"Lasanha tradicional com molho bolonhesa, molho bechamel e queijo parmesão gratinado.","price":"R$ 78","visible":true},{"category":"Pasta","name":"Spaghetti alla Puttanesca","description":"Spaghetti com molho de tomate, alho, alici, azeitonas pretas e alcaparras.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Penne al Pesto","description":"Penne com molho à base de manjericão, nozes, alho, queijo parmesão e azeite de oliva extravirgem.","price":"R$ 68","visible":true},{"category":"Pasta","name":"Gnocchi alla Sorrentina","description":"Nhoque com molho de tomate, manjericão e muçarela de búfala, gratinado com queijo parmesão.","price":"R$ 68","visible":true},{"category":"Risotti","name":"Risotto ai Funghi Trifolati Tartufato","description":"Risoto com cogumelos mistos, finalizado com azeite de trufas.","price":"R$ 79","visible":true},{"category":"Risotti","name":"Risotto Caprese","description":"Risoto de tomates-cereja, manjericão e muçarela de búfala, finalizado com pesto.","price":"R$ 75","visible":true},{"category":"Risotti","name":"Risotto ai Frutti di Mare","description":"Risoto de frutos do mar (camarão, lula e mexilhão) com caldo de crustáceos.","price":"R$ 98","visible":true},{"category":"Risotti","name":"Risotto al Limone","description":"Risoto de limão siciliano com creme de parmesão.","price":"R$ 68","visible":true},{"category":"Pesce","name":"Gamberi alla Fiamma","description":"Camarões médios flambados com conhaque, servidos com risoto de ervilhas e hortelã.","price":"R$ 98","visible":true},{"category":"Pesce","name":"Pesce in Crosta","description":"Pescado do dia em crosta de castanha e ervas com purê de batatas e tomates-cereja assados, ou risoto de limão siciliano.","price":"R$ 95","visible":true},{"category":"Pesce","name":"Salmone al Cartoccio","description":"Salmão assado no forno com azeitonas pretas, tomates-cereja e lascas de gengibre, servido com risoto de limão siciliano.","price":"R$ 129","visible":true},{"category":"Carne","name":"Brasato al Vino Rosso","description":"Carne braseada com molho de vinho tinto, servida com polenta branca cremosa.","price":"R$ 85","visible":true},{"category":"Carne","name":"Filetto al Pepe Verde","description":"Filé mignon ao molho de pimenta verde, servido com risoto de queijo parmesão ou spaghetti na manteiga.","price":"R$ 98","visible":true},{"category":"Carne","name":"Filetto alla Senape","description":"Mignon ao molho de mostarda, servido com risoto de queijo parmesão ou spaghetti na manteiga.","price":"R$ 98","visible":true},{"category":"Carne","name":"Stinco di Agnello Brasato","description":"Canela de cordeiro braseada em baixa temperatura com vinho tinto, servida com nhoque na manteiga e sálvia.","price":"R$ 139","visible":true},{"category":"Carne","name":"Pollo alla Cacciatora","description":"Coxa e sobrecoxa de frango ao molho caçador, servido com polenta branca cremosa.","price":"R$ 75","visible":true},{"category":"Carne","name":"Bocconcini di Ossobuco","description":"Ossobuco em cubos, acompanhado de risoto alla milanese (risoto de açafrão).","price":"R$ 105","visible":true},{"category":"Bambini","name":"Gnocchi Junior","description":"Nhoque ao molho de tomates italianos e manjericão fresco.","price":"R$ 48","visible":true},{"category":"Bambini","name":"Filetto di Manzo","description":"Escalope de mignon com arroz e batata chips ou spaghetti na manteiga.","price":"R$ 52","visible":true},{"category":"Bambini","name":"Spaghetti alla Bolognese","description":"Spaghetti com ragù de carne à moda de Bologna.","price":"R$ 48","visible":true},{"category":"Bambini","name":"Spaghetti al Burro","description":"Spaghetti salteado na manteiga.","price":"R$ 42","visible":true},{"category":"Dolci","name":"Tiramisù Friulano","description":"Tiramisù à moda clássica de Trieste, com creme mascarpone, café e cacau.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Pannacotta","description":"Sobremesa italiana com creme de avelãs e cobertura crocante.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Meringa all’Italiana","description":"Sorvete de mascarpone com suspiros, chantilly e frutas vermelhas.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Torta Caprese","description":"Torta de chocolate com farinha de amêndoas e compota de frutas vermelhas.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Mousse al Cioccolato","description":"Mousse de chocolate com chantilly e cereja.","price":"R$ 30","visible":true},{"category":"Dolci","name":"Café","description":"Expresso Illy.","price":"R$ 12,50","visible":true},{"category":"Bebidas","name":"Água","description":"Com gás ou sem gás.","price":"R$ 7","visible":true},{"category":"Bebidas","name":"Refrigerantes","description":"Coca-Cola, Coca-Cola Zero, Guaraná, Guaraná Zero, Fanta Laranja, Sprite, Sprite Zero e Água Tônica.","price":"R$ 9","visible":true},{"category":"Bebidas","name":"Sucos Del Valle","description":"Pêssego, uva ou manga.","price":"R$ 12","visible":true},{"category":"Bebidas","name":"Chopp 300 ml","description":"Chopp Königs puro malte pilsen genuíno de Jaraguá do Sul.","price":"R$ 14","visible":true},{"category":"Bebidas","name":"Heineken Long Neck","description":"Cerveja long neck.","price":"R$ 16","visible":true},{"category":"Bebidas","name":"Heineken Zero Long Neck","description":"Cerveja zero álcool long neck.","price":"R$ 16","visible":true},{"category":"Bebidas","name":"Cerveja sem glúten Long Neck","description":"Cerveja long neck sem glúten.","price":"R$ 16","visible":true},{"category":"Drinks","name":"Gin Tônica","description":"Gin, água tônica, limão siciliano e especiarias.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Gin Tanqueray","description":"Tanqueray, água tônica e especiarias.","price":"R$ 40","visible":true},{"category":"Drinks","name":"Aperol Spritz","description":"Aperol, espumante, água com gás e laranja.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Caipirosca","description":"Vodka, açúcar e limão; opção com morango e limão siciliano.","price":"R$ 25","visible":true},{"category":"Drinks","name":"Negroni","description":"Gin, Campari, vermouth e laranja.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Negroni Sbagliato","description":"Campari, vermouth, espumante e laranja.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Mery Spritz","description":"Espumante, xarope Monin, água com gás e maçã verde.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Limoncello Spritz","description":"Espumante, limoncello, água com gás e limão siciliano.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Old Parr 12 anos","description":"Whisky.","price":"R$ 30","visible":true},{"category":"Drinks","name":"Singleton Of Dufftown 12 anos","description":"Whisky.","price":"R$ 45","visible":true},{"category":"Drinks","name":"Licor 43","description":"Licor.","price":"R$ 25","visible":true},{"category":"Drinks","name":"Amaro Ramazzotti","description":"Licor amaro italiano.","price":"R$ 18","visible":true}]
-};
-const clone=o=>JSON.parse(JSON.stringify(o));
-let data=clone(DEFAULT);
-let adminPassword="";
-
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function wa(){return "https://wa.me/"+String(data.whatsapp||"").replace(/\D/g,"")+"?text="+encodeURIComponent("Olá! Gostaria de reservar uma mesa na Nonna Mery.")}
-function setText(id,v){const e=document.getElementById(id);if(e)e.textContent=v||""}
-function render(){
- setText("heroLead",data.heroLead);setText("heroSubtitle",data.heroSubtitle);setText("storyTitle",data.storyTitle);setText("storyText",data.storyText);
- setText("address",data.address);setText("hours",data.hours);setText("phone",data.phone);
- document.getElementById("heroImage").src=data.heroImage;document.getElementById("storyImage").src=data.storyImage;document.getElementById("experienceImage").src=data.experienceImage;
- const w=wa();["navReserve","heroReserve","visitReserve","mobileReserve","footerWhats"].forEach(id=>document.getElementById(id).href=w);
- document.getElementById("footerInstagram").href=data.instagram;
- ["externalMenu","modalExternalMenu"].forEach(id=>document.getElementById(id).href=data.menuUrl||data.instagram);
- const gal=(data.gallery||[]).slice(0,5);
- document.getElementById("galleryGrid").innerHTML=gal.map((u,i)=>`<div class="photo reveal"><img src="${esc(u)}" alt="Nonna Mery ${i+1}"><div class="photoTag">${["La casa","Cucina","Dettagli","Atmosfera","A tavola"][i]||"Nonna Mery"}</div></div>`).join("");
- const dishes=(data.dishes||[]).filter(d=>d.visible!==false);
- document.getElementById("menuGrid").innerHTML=dishes.slice(0,6).map(d=>`<article class="menuCard reveal"><div><div class="kicker">${esc(d.category||"")}</div><h3>${esc(d.name||"")}</h3><p>${esc(d.description||"")}</p></div><div class="menuPrice">${esc(d.price||"")}</div></article>`).join("");
- const cats=[...new Set(dishes.map(d=>d.category))];
- document.getElementById("fullMenuGrid").innerHTML=cats.map(cat=>`<section class="menuCategory"><div class="menuCategoryTitle">${esc(cat)}</div><div class="menuCategoryItems">${dishes.filter(d=>d.category===cat).map(d=>`<div class="fullItem"><div style="display:flex;justify-content:space-between;gap:1rem;align-items:baseline"><b>${esc(d.name||"")}</b><span class="menuPrice">${esc(d.price||"")}</span></div><p>${esc(d.description||"")}</p></div>`).join("")}</div></section>`).join("");
- activate();
-}
-const nav=document.getElementById("nav");addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>20));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.08});
-function activate(){document.querySelectorAll(".reveal:not(.on)").forEach(e=>io.observe(e))}
-function openMenu(){document.getElementById("menuModal").classList.add("open");document.body.style.overflow="hidden"}
-function closeMenu(){document.getElementById("menuModal").classList.remove("open");document.body.style.overflow=""}
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeMenu();closeEditor()}});
-
-const fields={
- eHeroLead:"heroLead",eHeroSubtitle:"heroSubtitle",eStoryTitle:"storyTitle",eStoryText:"storyText",
- eAddress:"address",eHours:"hours",ePhone:"phone",eWhatsapp:"whatsapp",eInstagram:"instagram",eMenuUrl:"menuUrl",
- eHeroImage:"heroImage",eStoryImage:"storyImage",eExperienceImage:"experienceImage"
-};
-function openEditor(){
-  setTimeout(()=>{
-    const f=document.getElementById("ePdfUrl");
-    if(f) f.value=(data.pdfUrl||"cardapio-nonna-mery.pdf");
-    const s=document.getElementById("pdfStatus");
-    if(s) s.textContent="PDF atual: "+(data.pdfUrl||"cardapio-nonna-mery.pdf")+". Você pode enviar um novo PDF e publicar para todos.";
-  },0);document.getElementById("editorOverlay").classList.add("open");document.getElementById("loginBox").style.display="block";document.getElementById("editorPanel").style.display="none";setTimeout(()=>document.getElementById("pin").focus(),50)}
-function closeEditor(){document.getElementById("editorOverlay").classList.remove("open");document.body.style.overflow=""}
-async function loginEditor(){
- const pin=document.getElementById("pin").value;
- const status=document.getElementById("cmsStatus");
- try{
-   const r=await fetch("/api/auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:pin})});
-   if(!r.ok) throw new Error("PIN incorreto");
-   adminPassword=pin;
-   document.getElementById("loginBox").style.display="none";
-   document.getElementById("editorPanel").style.display="block";
-   document.body.style.overflow="hidden";
-   fillEditor();
-   if(status) status.textContent="Painel conectado. As alterações serão publicadas para todos.";
- }catch(err){ alert("PIN incorreto ou painel ainda não configurado."); }
-}
-function fillEditor(){Object.entries(fields).forEach(([id,key])=>document.getElementById(id).value=data[key]||"");document.getElementById("eGallery").value=(data.gallery||[]).join("\n");renderDishEditor()}
-function renderDishEditor(){
- const root=document.getElementById("dishEditor");root.innerHTML="";
- (data.dishes||[]).forEach((d,i)=>{const el=document.createElement("div");el.className="editDish";el.innerHTML=`
- <div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:.8rem"><strong class="display" style="font-size:1.3rem;font-weight:500">${esc(d.name||"Novo prato")}</strong><button class="btn danger" onclick="removeDish(${i})">Remover</button></div>
- <div class="formGrid">
-  <div class="field"><label>Categoria</label><input value="${esc(d.category||"")}" oninput="data.dishes[${i}].category=this.value"></div>
-  <div class="field"><label>Nome</label><input value="${esc(d.name||"")}" oninput="data.dishes[${i}].name=this.value"></div>
-  <div class="field full"><label>Descrição</label><textarea oninput="data.dishes[${i}].description=this.value">${esc(d.description||"")}</textarea></div>
-  <div class="field"><label>Preço / texto</label><input value="${esc(d.price||"")}" oninput="data.dishes[${i}].price=this.value"></div>
-  <div class="field"><label>Mostrar</label><select onchange="data.dishes[${i}].visible=this.value==='true'"><option value="true" ${d.visible!==false?"selected":""}>Sim</option><option value="false" ${d.visible===false?"selected":""}>Não</option></select></div>
- </div>`;root.appendChild(el)})
-}
-function addDish(){data.dishes=data.dishes||[];data.dishes.push({category:"",name:"Novo prato",description:"",price:"",visible:true});renderDishEditor()}
-function removeDish(i){if(confirm("Remover este prato?")){data.dishes.splice(i,1);renderDishEditor()}}
-async function saveEditor(){
- const status=document.getElementById("cmsStatus");
- try{
-   if(!adminPassword) throw new Error("Faça login novamente.");
-   if(status) status.textContent="Publicando alterações…";
-
-   Object.entries(fields).forEach(([id,key])=>data[key]=document.getElementById(id).value.trim());
-   data.gallery=document.getElementById("eGallery").value.split("\n").map(x=>x.trim()).filter(Boolean);
-
-   const heroFile=document.getElementById("eHeroUpload")?.files?.[0];
-   const storyFile=document.getElementById("eStoryUpload")?.files?.[0];
-   const expFile=document.getElementById("eExperienceUpload")?.files?.[0];
-   const galleryFiles=[...(document.getElementById("eGalleryUpload")?.files||[])];
-   const pdfFile=document.getElementById("ePdfFile")?.files?.[0];
-
-   if(heroFile){ status.textContent="Enviando foto principal…"; data.heroImage=await uploadAsset(heroFile,"hero"); document.getElementById("eHeroImage").value=data.heroImage; }
-   if(storyFile){ status.textContent="Enviando foto da casa…"; data.storyImage=await uploadAsset(storyFile,"story"); document.getElementById("eStoryImage").value=data.storyImage; }
-   if(expFile){ status.textContent="Enviando foto da experiência…"; data.experienceImage=await uploadAsset(expFile,"experience"); document.getElementById("eExperienceImage").value=data.experienceImage; }
-   for(const f of galleryFiles){ status.textContent="Enviando fotos da galeria…"; data.gallery.push(await uploadAsset(f,"gallery")); }
-   if(pdfFile){
-     status.textContent="Enviando e publicando novo cardápio PDF…";
-     data.pdfUrl=await uploadAsset(pdfFile,"menu");
-     document.getElementById("ePdfUrl").value=data.pdfUrl;
-     const pdfStatus=document.getElementById("pdfStatus");
-     if(pdfStatus) pdfStatus.textContent="Cardápio atualizado e publicado automaticamente.";
-   }else{
-     const pdfField=document.getElementById("ePdfUrl");
-     if(pdfField?.value.trim()) data.pdfUrl=pdfField.value.trim();
-   }
-
-   status.textContent="Salvando conteúdo…";
-   const r=await fetch("/api/cms",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:adminPassword,data})});
-   const j=await r.json().catch(()=>({}));
-   if(!r.ok) throw new Error(j.error||"Falha ao publicar");
-   data={...clone(DEFAULT),...(j.data||data)};
-   render();
-   fillEditor();
-   status.textContent="Publicado com sucesso. Todos os visitantes já recebem o conteúdo atualizado.";
-   alert("Alterações publicadas com sucesso.");
- }catch(err){
-   console.error(err);
-   if(status) status.textContent="Não foi possível publicar: "+err.message;
-   alert("Não foi possível publicar. "+err.message);
- }
-}
-
-async function blobToBase64(blob){
- return await new Promise((resolve,reject)=>{
-   const reader=new FileReader();
-   reader.onload=()=>resolve(String(reader.result).split(",")[1]||"");
-   reader.onerror=()=>reject(reader.error);
-   reader.readAsDataURL(blob);
- });
-}
-async function optimizeImage(file){
- if(!file.type.startsWith("image/")) return file;
- if(file.type==="image/gif" || file.type==="image/svg+xml") return file;
- const bitmap=await createImageBitmap(file);
- const max=1800;
- const scale=Math.min(1,max/Math.max(bitmap.width,bitmap.height));
- const w=Math.max(1,Math.round(bitmap.width*scale)), h=Math.max(1,Math.round(bitmap.height*scale));
- const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;
- canvas.getContext("2d").drawImage(bitmap,0,0,w,h);
- const blob=await new Promise(res=>canvas.toBlob(res,"image/jpeg",.86));
- return blob || file;
-}
-async function uploadAsset(file,kind){
- let blob=file;
- let filename=file.name||"arquivo";
- if(file.type.startsWith("image/")){
-   blob=await optimizeImage(file);
-   filename=filename.replace(/\.[^.]+$/,"")+".jpg";
- }
- if(blob.size>4*1024*1024) throw new Error("Arquivo muito grande. Use no máximo 4 MB.");
- const contentBase64=await blobToBase64(blob);
- const r=await fetch("/api/upload",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
-   password:adminPassword,filename,contentBase64,contentType:blob.type||file.type||"application/octet-stream",kind
- })});
- const j=await r.json().catch(()=>({}));
- if(!r.ok) throw new Error(j.error||"Falha no envio");
- return j.url;
-}
-
-const pdfInput=document.getElementById("ePdfFile");
-if(pdfInput){
-  pdfInput.addEventListener("change",()=>{
-    const f=pdfInput.files?.[0];
-    const st=document.getElementById("pdfStatus");
-    if(!f){ if(st) st.textContent="Nenhum envio pendente."; return; }
-    if(f.type!=="application/pdf"){
-      pdfInput.value="";
-      if(st) st.textContent="Selecione um arquivo PDF válido.";
-      alert("Selecione um arquivo PDF válido.");
-      return;
-    }
-    if(st) st.textContent="Novo cardápio selecionado: "+f.name+". Clique em Salvar para publicar.";
-  });
-}
-
-async function loadCmsContent(){
- try{
-   const r=await fetch("/api/cms?ts="+Date.now(),{cache:"no-store"});
-   if(!r.ok) throw new Error("CMS indisponível");
-   const j=await r.json();
-   if(j && j.data) data={...clone(DEFAULT),...j.data};
- }catch(err){ console.warn("Usando conteúdo padrão:",err); }
- render();
-}
-function initCms(){ loadCmsContent(); }
-
-initCms();
-</script>
 </body>
 </html>
