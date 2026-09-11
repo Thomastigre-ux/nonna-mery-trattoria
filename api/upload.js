@@ -1,3 +1,4 @@
+const { PDFDocument } = require('pdf-lib');
 const {
   json,
   parseBody,
@@ -8,12 +9,44 @@ const {
   writeBinaryFile
 } = require('../lib/cms');
 
-function safeName(name='arquivo') {
+function safeName(name = 'arquivo') {
   return String(name)
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9._-]+/g, '-')
     .replace(/-+/g, '-')
     .replace(/^[-.]+|[-.]+$/g, '') || 'arquivo';
+}
+
+async function normalizePdf(buffer) {
+  try {
+    const pdf = await PDFDocument.load(buffer, {
+      ignoreEncryption: false,
+      throwOnInvalidObject: false,
+      updateMetadata: false
+    });
+
+    const pageCount = pdf.getPageCount();
+    if (!pageCount) throw new Error('PDF sem páginas.');
+
+    const bytes = await pdf.save({
+      useObjectStreams: false,
+      addDefaultPage: false,
+      updateFieldAppearances: false
+    });
+
+    const normalized = Buffer.from(bytes);
+    if (normalized.subarray(0, 5).toString('ascii') !== '%PDF-') {
+      throw new Error('Falha ao normalizar o PDF.');
+    }
+
+    return { buffer: normalized, pageCount };
+  } catch (err) {
+    const message = String(err?.message || 'PDF inválido.');
+    if (/encrypted|password/i.test(message)) {
+      throw new Error('O PDF está protegido por senha. Envie uma versão sem proteção.');
+    }
+    throw new Error('O PDF está corrompido ou possui estrutura inválida. Exporte-o novamente como PDF e tente de novo.');
+  }
 }
 
 module.exports = async function handler(req, res) {
@@ -36,18 +69,16 @@ module.exports = async function handler(req, res) {
       return json(res, 400, { error: 'Arquivo vazio.' });
     }
 
-    const folder = ['hero','story','experience','gallery','menu'].includes(kind)
+    const folder = ['hero', 'story', 'experience', 'gallery', 'menu'].includes(kind)
       ? kind
       : 'uploads';
 
-    // O PDF do cardápio sempre substitui o mesmo arquivo.
-    // Assim o administrador não precisa renomear nada manualmente.
     const name = kind === 'menu'
       ? 'cardapio-nonna-mery.pdf'
       : `${Date.now()}-${safeName(filename)}`;
 
     const path = `assets/${folder}/${name}`;
-    const buffer = Buffer.from(contentBase64, 'base64');
+    let buffer = Buffer.from(contentBase64, 'base64');
 
     if (!buffer.length) {
       return json(res, 400, { error: 'Arquivo inválido.' });
@@ -57,12 +88,16 @@ module.exports = async function handler(req, res) {
       return json(res, 413, { error: 'Arquivo muito grande. Use no máximo 4 MB.' });
     }
 
-    // Validação simples para impedir arquivo que não seja PDF real.
+    let pageCount = null;
+
     if (kind === 'menu') {
-      const header = buffer.subarray(0, 5).toString('ascii');
-      if (header !== '%PDF-') {
+      if (buffer.subarray(0, 5).toString('ascii') !== '%PDF-') {
         return json(res, 400, { error: 'O arquivo selecionado não é um PDF válido.' });
       }
+
+      const normalized = await normalizePdf(buffer);
+      buffer = normalized.buffer;
+      pageCount = normalized.pageCount;
     }
 
     await writeBinaryFile(path, buffer, `CMS: atualizar ${folder}`);
@@ -70,8 +105,6 @@ module.exports = async function handler(req, res) {
     const version = Date.now();
     const url = `https://raw.githubusercontent.com/Thomastigre-ux/nonna-mery-trattoria/main/${path}?v=${version}`;
 
-    // Ao trocar o cardápio, atualiza content.json automaticamente.
-    // Mesmo que o usuário não edite nenhum outro campo, o novo PDF vira o oficial.
     if (kind === 'menu') {
       let current = {};
       try {
@@ -85,8 +118,12 @@ module.exports = async function handler(req, res) {
       await writeJsonFile('content.json', current, 'CMS: atualizar cardápio oficial');
     }
 
-    return json(res, 200, { ok: true, url });
-
+    return json(res, 200, {
+      ok: true,
+      url,
+      normalized: kind === 'menu',
+      pageCount
+    });
   } catch (e) {
     console.error(e);
     return json(res, 500, { error: e.message || 'Falha no upload.' });
