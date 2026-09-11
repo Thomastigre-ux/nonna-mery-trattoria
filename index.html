@@ -142,6 +142,8 @@ footer a{display:block;opacity:.68;margin:.7rem 0}footer a:hover{opacity:1}
 .modal.open{display:flex}.modalPanel{background:var(--ivory);width:min(980px,96vw);max-height:90vh;overflow:auto;border-radius:22px;padding:2rem;position:relative}
 .modalClose{position:absolute;right:1.2rem;top:1rem;border:0;background:none;font-size:1.8rem;cursor:pointer}.modalPanel h3{font-family:var(--serif);font-size:3.2rem;font-weight:400;margin:.2rem 0 1.5rem}
 .fullMenuGrid{display:block}.menuCategory{margin:0 0 2.2rem}.menuCategoryTitle{font-family:var(--serif);font-size:2.25rem;color:var(--wine);border-bottom:1px solid var(--line);padding-bottom:.45rem;margin-bottom:.2rem}.menuCategoryItems{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem}.fullItem{padding:1rem 0;border-top:1px solid var(--line)}.fullItem b{font-family:var(--serif);font-size:1.35rem;font-weight:500}.fullItem p{font-size:.82rem;opacity:.65;line-height:1.55;margin:.35rem 0 0}
+.unavailableTag{display:inline-block;margin-left:.45rem;padding:.18rem .45rem;border-radius:999px;background:rgba(109,49,56,.12);color:var(--wine);font-family:var(--sans);font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.menuCard.isUnavailable,.fullItem.isUnavailable{opacity:.58}
 
 /* owner editor */
 .editorOverlay{position:fixed;inset:0;z-index:130;background:rgba(5,8,6,.72);backdrop-filter:blur(10px);display:none}
@@ -699,9 +701,11 @@ function render(){
  const gal=(data.gallery||[]).slice(0,5);
  document.getElementById("galleryGrid").innerHTML=gal.map((u,i)=>`<div class="photo reveal"><img src="${esc(u)}" alt="Nonna Mery ${i+1}"><div class="photoTag">${["La casa","Cucina","Dettagli","Atmosfera","A tavola"][i]||"Nonna Mery"}</div></div>`).join("");
  const dishes=(data.dishes||[]).filter(d=>d.visible!==false);
- document.getElementById("menuGrid").innerHTML=dishes.slice(0,6).map(d=>`<article class="menuCard reveal"><div><div class="kicker">${esc(d.category||"")}</div><h3>${esc(d.name||"")}</h3><p>${esc(d.description||"")}</p></div><div class="menuPrice">${esc(d.price||"")}</div></article>`).join("");
+ const featured=dishes.filter(d=>d.featured).slice(0,6);
+ const preview=(featured.length?featured:dishes.slice(0,6));
+ document.getElementById("menuGrid").innerHTML=preview.map(d=>`<article class="menuCard reveal ${d.available===false?"isUnavailable":""}"><div><div class="kicker">${esc(d.category||"")}</div><h3>${esc(d.name||"")}${d.available===false?'<span class="unavailableTag">Indisponível</span>':""}</h3><p>${esc(d.description||"")}</p></div><div class="menuPrice">${esc(d.price||"")}</div></article>`).join("");
  const cats=[...new Set(dishes.map(d=>d.category))];
- document.getElementById("fullMenuGrid").innerHTML=cats.map(cat=>`<section class="menuCategory"><div class="menuCategoryTitle">${esc(cat)}</div><div class="menuCategoryItems">${dishes.filter(d=>d.category===cat).map(d=>`<div class="fullItem"><div style="display:flex;justify-content:space-between;gap:1rem;align-items:baseline"><b>${esc(d.name||"")}</b><span class="menuPrice">${esc(d.price||"")}</span></div><p>${esc(d.description||"")}</p></div>`).join("")}</div></section>`).join("");
+ document.getElementById("fullMenuGrid").innerHTML=cats.map(cat=>`<section class="menuCategory"><div class="menuCategoryTitle">${esc(cat)}</div><div class="menuCategoryItems">${dishes.filter(d=>d.category===cat).map(d=>`<div class="fullItem ${d.available===false?"isUnavailable":""}"><div style="display:flex;justify-content:space-between;gap:1rem;align-items:baseline"><b>${esc(d.name||"")}${d.available===false?'<span class="unavailableTag">Indisponível</span>':""}</b><span class="menuPrice">${esc(d.price||"")}</span></div><p>${esc(d.description||"")}</p></div>`).join("")}</div></section>`).join("");
  activate();
 }
 const nav=document.getElementById("nav");addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>20));
@@ -890,7 +894,7 @@ async function loadCmsContent(){
    if(menuRes.ok){
      const menuRows=await menuRes.json();
      if(Array.isArray(menuRows)&&menuRows.length){
-       data.dishes=menuRows.map(x=>({category:x.category,name:x.name,description:x.description,price:x.price,visible:x.visible!==false}));
+       data.dishes=menuRows.map(x=>({category:x.category,name:x.name,description:x.description,price:x.price,visible:x.visible!==false,featured:x.featured===true,available:x.available!==false}));
      }
    }
  }catch(err){
